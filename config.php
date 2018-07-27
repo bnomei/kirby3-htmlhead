@@ -25,11 +25,11 @@ Kirby::plugin('bnomei/htmlhead', [
     'htmlhead/typekit' => __DIR__ . '/snippets/htmlhead/typekit.php',
   ],
   'pageMethods' => [
-    'htmlhead_snippets' => function($page) {
-        return \Bnomei\HTMLHead::snippets($page);
+    'htmlhead_snippets' => function () {
+        return \Bnomei\HTMLHead::snippets($this);
     },
-    'htmlhead_alpha' => function($page, $title = null) {
-        return \Bnomei\HTMLHead::alpha($page, $title);
+    'htmlhead_alpha' => function ($title = null) {
+        return \Bnomei\HTMLHead::alpha($this, $title);
     }
   ]
 ]);
