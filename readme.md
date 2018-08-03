@@ -11,9 +11,8 @@ This plugin is free but if you use it in a commercial project please consider to
 - basic metatags
 - rss feed
 - opengraph
-- google analytics with anonymize IP
-- google webfonts
-- typekit
+- [webfontloader](https://github.com/typekit/webfontloader) to load and track webfonts
+- [loadjs](https://github.com/muicss/loadjs) to load js and css
 - [a11y.css](http://ffoodd.github.io/a11y.css/) when config `debug => true`
 
 ## Usage
@@ -36,10 +35,21 @@ Or if you would use these meta tags anyway you can use
 <?= $page->htmlhead_alpha($page->title()) ?>
 <?= $page->htmlhead_snippets() ?>
 // or just
-<?= snippet('plugin-htmlhead') ?>
+<?php snippet('plugin-htmlhead') ?>
 ```
 
-If you have your own snippets you want to have called at the header simply add them to the `bnomei.htmlhead.snippets` setting.
+## Extending with Snippets
+
+If you have your own snippets you want to have called at the header simply add them to the `bnomei.htmlhead.snippets` setting. For example you could create a `snippet/matomo.php` with your piwik/matomo tracking code and just add that to the config.
+
+```php
+return [
+    'bnomei.htmlhead.snippets' => [
+        'matomo'
+    ],
+    // ... other options
+];
+```
 
 ## Setting
 
@@ -50,32 +60,16 @@ You can set these in your `site/config/config.php` or in your template code sinc
 - this will call all snippets of this plugin. add the name of your snippet without its file-extension.
 
 ### bnomei.htmlhead.seo (template only)
-- default: see snippet
+- default: see snippet, `false` to disable
 
 - you can use a [Kirby Page Model](https://getkirby.com/docs/developer-guide/advanced/models) or [Kirby Page Methods](https://getkirby.com/docs/developer-guide/objects/page) to provide the values `head_author` and `head_description` easily.
 
 ### bnomei.htmlhead.opengraph (template only)
-- default: see snippet
+- default: see snippet, `false` to disable
 
 ### bnomei.htmlhead.feed
 - default: false
 - URI for `application/rss+xml` feed page object.
-
-### bnomei.htmlhead.typekit
-- default: false
-- set your typkit id to load your fonts async.
-
-### bnomei.htmlhead.googlewebfonts
-- default: []
-- array of google font family names. like `Lato:400,700`.
-
-### bnomei.htmlhead.googleanalytics
-- default: 'UA-'
-- your google analytics id.
-
-### bnomei.htmlhead.googleanalytics.anonymizeIp
-- default: `true`
-- will set `anonymizeIp` if enabled.
 
 ### bnomei.htmlhead.a11ycss.debugOnly
 - default: option('debug', false)
@@ -84,6 +78,55 @@ You can set these in your `site/config/config.php` or in your template code sinc
 ### bnomei.htmlhead.a11ycss
 - default: 'https://rawgit.com/ffoodd/a11y.css/master/css/a11y-en.css'
 - set this any other a11y.css configuration or to `false` if you want to disable a11y.css.
+
+### bnomei.htmlhead.loadjs
+- default: []
+- array of values with template name for filtering
+- assets will be [fingerprinted if plugin is installed](https://github.com/bnomei/kirby3-fingerprint)
+- inline scripts will be protected by [nonce](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Security-Policy/script-src#Unsafe_inline_script) if [security headers plugin is installed](https://github.com/bnomei/kirby3-security-headers)
+
+> TIP: if loading assets from other servers consider using fingerprint plugin with SRI instead.
+
+```php
+return [
+    'bnomei.htmlhead.loadjs' => [
+        'home' => [ // custom id
+            'template' => ['home', 'projects'], // templates
+            'dependencies' => [
+                '/assets/js/zepto.min.js',
+                '/assets/js/flickty.pkg.min.js',
+                '/assets/css/flickty.min.css', // css too!
+                '/assets/js/complex-stuff.js'
+            ]
+        ],
+        '*' => [ // fallback
+            'template' => [], // all templates
+            'dependencies' => [
+                '/assets/js/zepto.min.js',
+                '/assets/js/simple.js'
+            ]
+        ],
+    ],
+    // ... other options
+];
+```
+
+### bnomei.htmlhead.webfontloader
+- default: false
+- set a string to be echoed [example](https://github.com/typekit/webfontloader#custom)
+```php
+return [
+    'bnomei.htmlhead.webfontloader' => 
+        "google: {
+            families: ['Droid Sans']
+        },
+        custom: {
+            families: ['My Font', 'My Other Font:n4,i4,n7'],
+            urls: ['/fonts.css']
+        }",
+    // ... other options
+];
+```
 
 ## Disclaimer
 

@@ -1,0 +1,6 @@
+{
+  "dependencies": {
+    "loadjs": "^3.5.4",
+    "webfontloader": "^1.6.28"
+  }
+}

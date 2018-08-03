@@ -7,8 +7,9 @@
     ]);
     if(!is_array($htmlhead_seo)) $htmlhead_seo = [];
     foreach ($htmlhead_seo as $key => $value) {
-        echo brick('meta')
-            ->attr('name', $key)
-            ->attr('content', $value).PHP_EOL;
+        echo \Kirby\Toolkit\Html::tag('meta', '', [
+            'property' => $key,
+            'content' => $value
+        ]).PHP_EOL;
     }
 ?>

@@ -16,8 +16,9 @@
     if(!is_array($htmlhead_og)) $htmlhead_og = [];
     foreach ($htmlhead_og as $key => $value) {
         if(!$value) continue;
-        echo brick('meta')
-            ->attr('property', $key)
-            ->attr('content', $value).PHP_EOL;
+        echo \Kirby\Toolkit\Html::tag('meta', '', [
+            'property' => $key,
+            'content' => $value
+        ]).PHP_EOL;
     }
 ?>

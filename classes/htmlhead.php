@@ -2,13 +2,20 @@
 
 namespace Bnomei;
 
-use Kirby\Toolkit;
-
 class HTMLHead {
 
   static $snippets = [];
   static function snippets($page) {
     $return = [];
+
+    if(count(self::$snippets) == 0) {
+        foreach(\Kirby\Toolkit\Dir::read(
+            implode(DIRECTORY_SEPARATOR, [
+                __DIR__, '..', 'snippets', 'htmlhead'
+            ])) as $s) {
+                self::$snippets[] = 'htmlhead/' . \Kirby\Toolkit\F::name($s);
+        }
+    }
 
     $indent = option('bnomei.htmlhead.indent');
     $customSnippets = option('bnomei.htmlhead.snippets');
@@ -18,14 +25,14 @@ class HTMLHead {
 
     foreach (self::$snippets as $snippetname) {
       $snip = snippet($snippetname, ['page' => $page, 'indent' => $indent], true);
-      if(Str::length(trim($snip)) == 0) continue;
+      if(\Kirby\Toolkit\Str::length(trim($snip)) == 0) continue;
 
       $snip = explode(PHP_EOL, $snip);
       $sarr = array_map(function($line) use ($indent){
         return $indent.trim($line).PHP_EOL;
       }, $snip);
 
-      $return[] = $indent.'<!-- '.Str::upper(str_replace('htmlhead/', '', $snippetname)).' -->'.PHP_EOL;
+      $return[] = $indent.'<!-- '.\Kirby\Toolkit\Str::upper(str_replace('htmlhead/', '', $snippetname)).' -->'.PHP_EOL;
       $return = array_merge($return, $sarr);
     }
 
