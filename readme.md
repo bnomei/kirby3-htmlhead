@@ -1,6 +1,6 @@
 # Kirby 3 HTMLHead
 
-![GitHub release](https://img.shields.io/github/release/bnomei/kirby3-htmlhead.svg?maxAge=1800) ![License](https://img.shields.io/github/license/mashape/apistatus.svg) ![Kirby Version](https://img.shields.io/badge/Kirby-3%2B-red.svg)
+![GitHub release](https://img.shields.io/github/release/bnomei/kirby3-htmlhead.svg?maxAge=1800) ![License](https://img.shields.io/github/license/mashape/apistatus.svg) ![Kirby Version](https://img.shields.io/badge/Kirby-3%2B-black.svg)
 
 Kirby 3 Plugin for a best-practice HTML Head Element extendable with snippets.
 
