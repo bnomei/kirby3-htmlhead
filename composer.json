@@ -29,7 +29,8 @@
     },
     "scripts": {
         "build": "yarn; cp ./node_modules/loadjs/dist/loadjs.min.js ./assets/js/; cp ./node_modules/webfontloader/webfontloader.js ./assets/js/; composer update; composer dumpautoload -o;",
-        "zip": "rm kirby3-handlebars.zip; composer remove getkirby/cms; composer dumpautoload -o; composer archive --format=zip --file=kirby3-handlebars; composer require getkirby/cms:'dev-master as 3.0.0'; composer dumpautoload -o;"
+        "dev-zip": "rm kirby3-htmlhead.zip; composer remove getkirby/cms; composer dumpautoload -o; composer archive --format=zip --file=kirby3-htmlhead; composer require getkirby/cms:'dev-master as 3.0.0'; composer dumpautoload -o;",
+        "zip": "rm kirby3-htmlhead.zip; composer update; composer remove getkirby/cms; composer dumpautoload -o; zip -r kirby3-htmlhead.zip . -x *.git* -x 'node_modules'; composer require getkirby/cms:'dev-master as 3.0.0'; composer dumpautoload -o;"
     },
     "minimum-stability": "beta"
 }
