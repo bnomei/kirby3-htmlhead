@@ -20,7 +20,7 @@ class HTMLHead {
     $indent = option('bnomei.htmlhead.indent');
     $customSnippets = option('bnomei.htmlhead.snippets');
     if(!is_array($customSnippets)) $customSnippets = [];
-    self::$snippets = array_merge(self::$snippets);
+    self::$snippets = array_merge(self::$snippets, $customSnippets);
     sort(self::$snippets);
 
     foreach (self::$snippets as $snippetname) {
