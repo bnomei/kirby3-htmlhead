@@ -5,7 +5,7 @@ namespace Bnomei;
 class HTMLHead {
 
   static $snippets = [];
-  static function snippets($page) {
+  static function snippets($page, $options = []) {
     $return = [];
 
     if(count(self::$snippets) == 0) {
@@ -24,6 +24,10 @@ class HTMLHead {
     sort(self::$snippets);
 
     foreach (self::$snippets as $snippetname) {
+      if(!\Kirby\Toolkit\A::get($options, $snippetname, true)) {
+        continue;
+      }
+
       $snip = snippet($snippetname, ['page' => $page, 'indent' => $indent], true);
       if(\Kirby\Toolkit\Str::length(trim($snip)) == 0) continue;
 
@@ -39,14 +43,15 @@ class HTMLHead {
     return implode($return);
   }
 
-  static function alpha($page, $title = null) {
-    $firstmetatags = [
+  static function alpha($page, $title = null, $metatags = []) {
+      $firstmetatags = [
         '<meta charset="utf-8">',
         '<meta http-equiv="x-ua-compatible" content="ie=edge">',
         '<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">',
         '<base href="'.kirby()->site()->url().'">',
         '<link rel="canonical" href="'.$page->url() .'">',
       ];
+      $firstmetatags = array_merge($firstmetatags, $metatags);
 
       if($title == null) {
         $title = \Kirby\Toolkit\Str::unhtml($page->title());

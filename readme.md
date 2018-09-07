@@ -14,6 +14,7 @@ This plugin is free but if you use it in a commercial project please consider to
 - [webfontloader](https://github.com/typekit/webfontloader) to load and track webfonts
 - [loadjs](https://github.com/muicss/loadjs) to load js and css
 - [a11y.css](http://ffoodd.github.io/a11y.css/) when config `debug => true`
+- Unregistered Snippet examples for google-analytics and google-tag-manager. You need to copy them to your `/site/snippets` folder.
 
 ## Usage
 
@@ -36,6 +37,28 @@ Or if you would use these meta tags anyway you can use
 <?= $page->htmlhead_snippets() ?>
 // or just
 <?php snippet('plugin-htmlhead') ?>
+```
+
+You can also provide custom metatags and on-the-fly options.
+
+```php
+<?php
+    $metatags = [
+        '<meta name="robots" content="noindex, nofollow">',
+        '<meta name="keywords" content="Kirby,Plugin,Html,Head,Meta,Snippets">',
+    ];
+    $options = [
+        'htmlhead/seo' => false,
+        'htmlhead/opengraph' => false,
+    ]
+?>
+<?= $page->htmlhead_alpha($page->title(), $metatags) ?>
+<?= $page->htmlhead_snippets($options) ?>
+// or just
+<?php snippet('plugin-htmlhead', [
+    'metatags' => $metatags, 
+    'options' => $options
+]) ?>
 ```
 
 ## Extending with Snippets
