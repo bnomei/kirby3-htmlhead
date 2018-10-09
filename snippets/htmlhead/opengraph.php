@@ -1,8 +1,8 @@
 <?php
     // Facebook: https://developers.facebook.com/docs/sharing/webmasters#markup
     // Open Graph: http://ogp.me/
-    $og_author = !$page->head_author() ? $page->head_author() : kirby()->site()->author();
-    $og_image = !$page->head_image() ? $page->head_image() : $page->images()->first();
+    $og_author = $page->head_author() ? $page->head_author() : kirby()->site()->author();
+    $og_image = $page->head_image() ? $page->head_image() : $page->images()->first();
     $img = $og_image ? $og_image->resize(470) : null;
     $htmlhead_og = option('bnomei.htmlhead.opengraph', [
         'og:title'          => \Kirby\Toolkit\Str::unhtml($page->title()),
