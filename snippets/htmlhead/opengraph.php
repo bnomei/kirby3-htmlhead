@@ -1,14 +1,14 @@
 <?php
     // Facebook: https://developers.facebook.com/docs/sharing/webmasters#markup
     // Open Graph: http://ogp.me/
-    $og_author = $page->head_author()->isNotEmpty() ? $page->head_author() : kirby()->site()->author();
-    $og_image = $page->head_image()->isNotEmpty() ? $page->image($page->head_image()->value()) : $page->images()->first();
-    $img = $page->hasImages() ? $og_image->resize(470) : null;
+    $og_author = !$page->head_author() ? $page->head_author() : kirby()->site()->author();
+    $og_image = !$page->head_image() ? $page->head_image() : $page->images()->first();
+    $img = $og_image ? $og_image->resize(470) : null;
     $htmlhead_og = option('bnomei.htmlhead.opengraph', [
         'og:title'          => \Kirby\Toolkit\Str::unhtml($page->title()),
         'og:type'           => 'website',
         'og:url'            => $page->url(),
-        'og:image'          => $img->url(),
+        'og:image'          => $img ? $img->url() : '',
         'og:image:width'    => $img ? $img->width() : '',
         'og:image:height'   => $img ? $img->height() : '',
         'og:site_name'      => site()->title(),
