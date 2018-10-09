@@ -3,12 +3,12 @@
     // Open Graph: http://ogp.me/
     $og_author = $page->head_author()->isNotEmpty() ? $page->head_author() : kirby()->site()->author();
     $og_image = $page->head_image()->isNotEmpty() ? $page->image($page->head_image()->value()) : $page->images()->first();
-    $img = $page->hasImages() ? $og_image->resize(470)->url() : null;
+    $img = $page->hasImages() ? $og_image->resize(470) : null;
     $htmlhead_og = option('bnomei.htmlhead.opengraph', [
         'og:title'          => \Kirby\Toolkit\Str::unhtml($page->title()),
         'og:type'           => 'website',
         'og:url'            => $page->url(),
-        'og:image'          => $img,
+        'og:image'          => $img->url(),
         'og:image:width'    => $img ? $img->width() : '',
         'og:image:height'   => $img ? $img->height() : '',
         'og:site_name'      => site()->title(),
