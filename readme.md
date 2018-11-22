@@ -9,6 +9,7 @@ This plugin is free but if you use it in a commercial project please consider to
 ## Key Features
 
 - basic metatags
+- js and css
 - rss feed
 - opengraph
 - [webfontloader](https://github.com/typekit/webfontloader) to load and track webfonts
@@ -89,6 +90,14 @@ You can set these in your `site/config/config.php` or in your template code sinc
 
 ### bnomei.htmlhead.opengraph (template only)
 - default: see snippet, `false` to disable
+
+### bnomei.htmlhead.css
+- default: []
+- array of css files URIs
+
+### bnomei.htmlhead.js
+- default: []
+- array of js files URIs
 
 ### bnomei.htmlhead.feed
 - default: false

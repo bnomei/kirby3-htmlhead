@@ -30,10 +30,19 @@
                     $deps = $load[$loadID]['dependencies'];
                     foreach ($deps as $dep) {
                         $dc++;
+                        $prefix = '';
+                        if(strpos($dep, 'css!') !== false) {
+                            $prefix = 'css!';
+                            $dep = str_replace('css!', '', $dep);
+                        }
+                        if(strpos($dep, 'img!') !== false) {
+                            $prefix = 'img!';
+                            $dep = str_replace('img!', '', $dep);
+                        }
                         if(class_exists('\Bnomei\Fingerprint')) {
                             $dep = \Bnomei\Fingerprint::process($dep)['hash'];
                         }
-                        echo "'" . $dep . "'" . ($dc != count($deps) ? ',' : '').PHP_EOL    ;
+                        echo "'" . $prefix.$dep . "'" . ($dc != count($deps) ? ',' : '').PHP_EOL    ;
                     }
                 ?>
             ],
