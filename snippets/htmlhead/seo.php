@@ -5,7 +5,9 @@
         'description' => \Kirby\Toolkit\Str::unhtml($page->head_description()),
         'robots'      => 'index, follow, noodp',
     ]);
-    if(!is_array($htmlhead_seo)) $htmlhead_seo = [];
+    if (!is_array($htmlhead_seo)) {
+        $htmlhead_seo = [];
+    }
     foreach ($htmlhead_seo as $key => $value) {
         echo \Kirby\Toolkit\Html::tag('meta', '', [
             'property' => $key,

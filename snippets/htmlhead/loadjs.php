@@ -10,7 +10,9 @@
         }
     }
 
-    $loadjs = implode(DIRECTORY_SEPARATOR, [
+    $loadjs = implode(
+        DIRECTORY_SEPARATOR,
+        [
         __DIR__,    // ./snippets/htmlhead
             '..',      // ./snippets
             '..',      // ./
@@ -31,15 +33,15 @@
                     foreach ($deps as $dep) {
                         $dc++;
                         $prefix = '';
-                        if(strpos($dep, 'css!') !== false) {
+                        if (strpos($dep, 'css!') !== false) {
                             $prefix = 'css!';
                             $dep = str_replace('css!', '', $dep);
                         }
-                        if(strpos($dep, 'img!') !== false) {
+                        if (strpos($dep, 'img!') !== false) {
                             $prefix = 'img!';
                             $dep = str_replace('img!', '', $dep);
                         }
-                        if(class_exists('\Bnomei\Fingerprint')) {
+                        if (class_exists('\Bnomei\Fingerprint')) {
                             $dep = \Bnomei\Fingerprint::process($dep)['hash'];
                         }
                         echo "'" . $prefix.$dep . "'" . ($dc != count($deps) ? ',' : '').PHP_EOL    ;
