@@ -50,8 +50,7 @@
         }
     ],
     "require": {
-        "php": ">=7.1.0",
-        "getkirby/cms": "^3.0.0-RC-2.0"
+        "php": ">=7.1.0"
     },
     "conflict": {
         "getkirby/kirby": "<3.0"
@@ -62,7 +61,7 @@
             "composer install --no-dev",
             "composer remove getkirby/cms",
             "composer dumpautoload -o",
-            "zip -r kirby3-htmlhead.zip . -x *.git*",
+            "zip -r kirby3-htmlhead.zip . -x *.git* -x 'node_modules'",
             "composer require getkirby/cms:'^3.0.0-RC-2.0'"
         ]
     }
