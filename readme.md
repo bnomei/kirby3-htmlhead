@@ -15,7 +15,7 @@ This plugin is free but if you use it in a commercial project please consider to
 
 - basic metatags
 - js and css
-- rss feed
+- rss feed (xml)
 - opengraph
 - [webfontloader](https://github.com/typekit/webfontloader) to load and track webfonts
 - [loadjs](https://github.com/muicss/loadjs) to load js and css
