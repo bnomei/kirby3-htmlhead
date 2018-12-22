@@ -62,7 +62,7 @@
             "composer install --no-dev",
             "composer remove getkirby/cms",
             "composer dumpautoload -o",
-            "zip -r kirby3-htmlhead.zip . -x *.git* -x 'node_modules'",
+            "zip -r kirby3-htmlhead.zip . -x *.git* -x 'node_modules/*'",
             "composer require getkirby/cms:'^3.0.0-RC-2.0'"
         ]
     }
