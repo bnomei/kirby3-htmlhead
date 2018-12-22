@@ -1,3 +1,5 @@
 vendor/
 node_modules/
 /kirby3-htmlhead.zip
+/kirby
+/.php_cs.cache
