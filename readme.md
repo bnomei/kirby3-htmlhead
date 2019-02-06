@@ -73,6 +73,14 @@ You can also provide custom metatags and on-the-fly options.
 ]) ?>
 ```
 
+There is a language helper available as well.
+
+```php
+<html <?= site()->attrLang() ?>>
+<!-- ... ->
+</html>
+```
+
 ## Extending with Snippets
 
 If you have your own snippets you want to have called at the header simply add them to the `bnomei.htmlhead.snippets` setting. For example you could create a `snippet/matomo.php` with your piwik/matomo tracking code and just add that to the config.
@@ -170,6 +178,9 @@ return [
     // ... other options
 ];
 ```
+
+### bnomei.htmlhead.lang
+- default: 'en' as fallback in non multilang setups
 
 ## Disclaimer
 

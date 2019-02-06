@@ -34,6 +34,14 @@ Kirby::plugin('bnomei/htmlhead', [
       'htmlhead_alpha' => function ($title = null) {
           return \Bnomei\HTMLHead::alpha($this, $title);
       }
+    ],
+    'siteMethods' => [
+        'attrLang' => function () {
+            if(option('languages')) {
+                return 'lang="'.kirby()->language().'"';
+            }
+            return option('bnomei.htmlhead.lang', 'en');
+        }
     ]
   ]);
   
