@@ -1,8 +1,8 @@
 {
     "name": "bnomei/kirby3-htmlhead",
     "description": "Kirby 3 Plugin for a best-practice HTML Head Element extendable with snippets.",
-    "type": "plugin",
-    "version": "1.6.6",
+    "type": "kirby-plugin",
+    "version": "1.7.0",
     "license": "MIT",
     "authors": [
         {
@@ -29,12 +29,7 @@
         "meta-tags",
         "opengraph"
     ],
-    "suggest": {
-    },
     "autoload": {
-        "files": [
-            "config.php"
-        ],
         "psr-4": {
             "Bnomei\\": "classes/"
         }
@@ -43,27 +38,14 @@
         "optimize-autoloader": true,
         "sort-packages": true
     },
-    "repositories": [
-        {
-            "type": "vcs",
-            "url": "https://github.com/k-next/kirby"
-        }
-    ],
     "require": {
-        "php": ">=7.1.0",
-        "getkirby/cms": "^3.0.0-RC-2.0"
-    },
-    "conflict": {
-        "getkirby/kirby": "<3.0"
+        "php": ">=7.1.0"
     },
     "scripts": {
-        "zip": [
-            "rm kirby3-htmlhead.zip",
-            "composer install --no-dev",
-            "composer remove getkirby/cms",
-            "composer dumpautoload -o",
-            "zip -r kirby3-htmlhead.zip . -x *.git* -x 'node_modules/*'",
-            "composer require getkirby/cms:'^3.0.0-RC-2.0'"
-        ]
+      "assets": [
+        "yarn",
+        "cp -f node_modules/loadjs/dist/loadjs.min.js assets/js/loadjs.min.js",
+        "cp -f node_modules/webfontloader/webfontloader.js assets/js/webfontloader.js"
+      ]
     }
 }

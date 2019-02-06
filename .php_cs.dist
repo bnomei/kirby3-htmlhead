@@ -3,6 +3,8 @@
 $finder = PhpCsFixer\Finder::create()
     ->exclude('vendor')
     ->exclude('kirby')
+    ->exclude('assets')
+    ->exclude('node_modules')
     ->in(__DIR__)
 ;
 
