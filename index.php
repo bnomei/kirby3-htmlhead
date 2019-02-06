@@ -40,7 +40,7 @@ Kirby::plugin('bnomei/htmlhead', [
             if(option('languages')) {
                 return 'lang="'.kirby()->language().'"';
             }
-            return option('bnomei.htmlhead.lang', 'en');
+            return 'lang="'.option('bnomei.htmlhead.lang', 'en').'"';
         }
     ]
   ]);
