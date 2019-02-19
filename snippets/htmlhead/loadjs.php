@@ -4,7 +4,7 @@
 
     $loadID = '*';
     foreach ($load as $lkey => $lval) {
-        if (in_array($page->template(), $lval['template'])) {
+        if (in_array($page->intendedTemplate(), $lval['template'])) {
             $loadID = $lkey;
             break;
         }
