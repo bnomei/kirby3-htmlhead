@@ -104,8 +104,7 @@ You can set these in your `site/config/config.php` or in your template code sinc
 
 ### bnomei.htmlhead.seo (template only)
 - default: see snippet, `false` to disable
-
-- you can use a [Kirby Page Model](https://getkirby.com/docs/developer-guide/advanced/models) or [Kirby Page Methods](https://getkirby.com/docs/developer-guide/objects/page) to provide the values `head_author` and `head_description` easily.
+- you can use a [Kirby Page Model](https://getkirby.com/docs/guide/templates/page-models) or [Kirby Page Methods](https://getkirby.com/docs/reference/plugins/extensions/page-methods) to provide the values `head_author` and `head_description` easily.
 
 ### bnomei.htmlhead.opengraph (template only)
 - default: see snippet, `false` to disable
