@@ -106,6 +106,24 @@ You can set these in your `site/config/config.php` or in your template code sinc
 - default: see snippet, `false` to disable
 - you can use a [Kirby Page Model](https://getkirby.com/docs/guide/templates/page-models) or [Kirby Page Methods](https://getkirby.com/docs/reference/plugins/extensions/page-methods) to provide the values `head_author` and `head_description` easily.
 
+**Example: site/plugins/ogtags/index.php**
+```php
+<?php
+Kirby::plugin('myname/ogtags', [
+    'pageMethods' => [
+        'head_author' => function () {
+            return site()->author()->isNotEmpty() ? site()->author()->value() : null;
+        },
+        'head_description' => function () {
+            return $this->description()->isNotEmpty() ? $this->description()->value() : site()->description()->value();
+        },
+        'head_image' => function () {
+            return $this->seoimage()->isNotEmpty() ? $this->seoimage()->toFile() : $this->images()->first();
+        },
+    ]
+]);
+```
+
 ### bnomei.htmlhead.opengraph (template only)
 - default: see snippet, `false` to disable
 
@@ -113,9 +131,13 @@ You can set these in your `site/config/config.php` or in your template code sinc
 - default: []
 - array of css files URIs
 
+> TIP: use `|` to add SRI to external stylesheets. example:  `https://www.external.com/stylesheet.css|sha384-oqVuAfXRKap7fdgcCY5uykM6+R9GqQ8K/uxy9rx7HNQlGYl1kPzQho1wx4JwY8wC`
+
 ### bnomei.htmlhead.js
 - default: []
 - array of js files URIs
+
+> TIP: use `|` to add SRI to external scripts. 
 
 ### bnomei.htmlhead.feed
 - default: false
