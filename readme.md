@@ -112,7 +112,7 @@ You can set these in your `site/config/config.php` or in your template code sinc
 Kirby::plugin('myname/ogtags', [
     'pageMethods' => [
         'head_author' => function () {
-            return site()->author()->isNotEmpty() ? site()->author()->value() : null;
+            return site()->author()->isNotEmpty() ? site()->author() : site()->title();
         },
         'head_description' => function () {
             return $this->description()->isNotEmpty() ? $this->description()->value() : site()->description()->value();
