@@ -188,14 +188,15 @@ return [
 - set a string to be echoed [example](https://github.com/typekit/webfontloader#custom)
 ```php
 return [
-    'bnomei.htmlhead.webfontloader' => 
-        "google: {
+    'bnomei.htmlhead.webfontloader' => "
+        'google': {
             families: ['Droid Sans']
         },
-        custom: {
+        'custom': {
             families: ['My Font', 'My Other Font:n4,i4,n7'],
             urls: ['/fonts.css']
-        }",
+        }
+    ",
     // ... other options
 ];
 ```
