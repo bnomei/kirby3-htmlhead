@@ -1,7 +1,7 @@
 # OS files
 .DS_Store
 .php_cs.cache
-
+.idea
 node_modules
 
 # files of Composer dependencies that are not needed for the plugin
