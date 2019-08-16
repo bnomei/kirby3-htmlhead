@@ -5,7 +5,7 @@
 Kirby::plugin('bnomei/htmlhead', [
     'options' => [
       'indent' => '    ',
-      'a11ycss.debugOnly' => null,
+      'a11ycssdebugOnly' => null,
       'a11ycss' => 'https://rawgit.com/ffoodd/a11y.css/master/css/a11y-en.css',
       'feed' => false,
       'webfontloader' => false,

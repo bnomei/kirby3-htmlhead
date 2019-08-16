@@ -1,5 +1,5 @@
 <?php
-    $htmlhead_a11y_debugOnly = option('bnomei.htmlhead.a11ycss.debugOnly');
+    $htmlhead_a11y_debugOnly = option('bnomei.htmlhead.a11ycssdebugOnly');
     if (is_null($htmlhead_a11y_debugOnly)) {
         $htmlhead_a11y_debugOnly = option('debug', false);
     }
