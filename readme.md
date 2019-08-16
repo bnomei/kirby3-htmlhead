@@ -112,7 +112,7 @@ You can set these in your `site/config/config.php` or in your template code sinc
 Kirby::plugin('myname/ogtags', [
     'pageMethods' => [
         'head_author' => function () {
-            return site()->author()->isNotEmpty() ? site()->author()->value() : null;
+            return site()->author()->isNotEmpty() ? site()->author() : site()->title();
         },
         'head_description' => function () {
             return $this->description()->isNotEmpty() ? $this->description()->value() : site()->description()->value();
@@ -188,14 +188,15 @@ return [
 - set a string to be echoed [example](https://github.com/typekit/webfontloader#custom)
 ```php
 return [
-    'bnomei.htmlhead.webfontloader' => 
-        "google: {
+    'bnomei.htmlhead.webfontloader' => "
+        'google': {
             families: ['Droid Sans']
         },
-        custom: {
+        'custom': {
             families: ['My Font', 'My Other Font:n4,i4,n7'],
             urls: ['/fonts.css']
-        }",
+        }
+    ",
     // ... other options
 ];
 ```
