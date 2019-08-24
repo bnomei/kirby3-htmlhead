@@ -1,6 +1,9 @@
 <?php
-  $ga = option('bnomei.htmlhead.googletagmanager');
-  if (!\Bnomei\HTMLHead::is_localhost() && strlen($ga) > 4):
+
+use Bnomei\HTMLHead;
+
+$ga = option('bnomei.htmlhead.googletagmanager');
+  if (!HTMLHead::is_localhost() && strlen($ga) > 4):
 ?>
 <script <?= $page->nonce('ga1') ?>>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
 new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],

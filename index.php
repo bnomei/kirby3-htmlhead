@@ -37,7 +37,7 @@ Kirby::plugin('bnomei/htmlhead', [
     ],
     'siteMethods' => [
         'attrLang' => function () {
-            if(option('languages')) {
+            if (option('languages')) {
                 return 'lang="'.kirby()->language().'"';
             }
             return 'lang="'.option('bnomei.htmlhead.lang', 'en').'"';

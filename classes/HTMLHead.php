@@ -2,6 +2,11 @@
 
 namespace Bnomei;
 
+use Kirby\Toolkit\A;
+use Kirby\Toolkit\Dir;
+use Kirby\Toolkit\F;
+use Kirby\Toolkit\Str;
+
 class HTMLHead
 {
     public static $snippets = [];
@@ -10,12 +15,12 @@ class HTMLHead
         $return = [];
 
         if (count(self::$snippets) == 0) {
-            foreach (\Kirby\Toolkit\Dir::read(
-            implode(DIRECTORY_SEPARATOR, [
+            foreach (Dir::read(
+                implode(DIRECTORY_SEPARATOR, [
                 __DIR__, '..', 'snippets', 'htmlhead'
             ])
         ) as $s) {
-                self::$snippets[] = 'htmlhead/' . \Kirby\Toolkit\F::name($s);
+                self::$snippets[] = 'htmlhead/' . F::name($s);
             }
         }
 
@@ -28,12 +33,12 @@ class HTMLHead
         sort(self::$snippets);
 
         foreach (self::$snippets as $snippetname) {
-            if (!\Kirby\Toolkit\A::get($options, $snippetname, true)) {
+            if (!A::get($options, $snippetname, true)) {
                 continue;
             }
 
             $snip = snippet($snippetname, ['page' => $page, 'indent' => $indent], true);
-            if (\Kirby\Toolkit\Str::length(trim($snip)) == 0) {
+            if (Str::length(trim($snip)) == 0) {
                 continue;
             }
 
@@ -42,7 +47,7 @@ class HTMLHead
                 return $indent.trim($line).PHP_EOL;
             }, $snip);
 
-            $return[] = $indent.'<!-- '.\Kirby\Toolkit\Str::upper(str_replace('htmlhead/', '', $snippetname)).' -->'.PHP_EOL;
+            $return[] = $indent.'<!-- '. Str::upper(str_replace('htmlhead/', '', $snippetname)).' -->'.PHP_EOL;
             $return = array_merge($return, $sarr);
         }
 
@@ -61,7 +66,7 @@ class HTMLHead
         $firstmetatags = array_merge($firstmetatags, $metatags);
 
         if ($title == null) {
-            $title = \Kirby\Toolkit\Str::unhtml($page->title());
+            $title = Str::unhtml($page->title());
         }
         if ($title != false) {
             $firstmetatags[] = '<title>'.$title.'</title>';

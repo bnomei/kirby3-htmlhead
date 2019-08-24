@@ -1,5 +1,8 @@
 <?php
-    $load = option('bnomei.htmlhead.loadjs');
+
+use Bnomei\Fingerprint;
+
+$load = option('bnomei.htmlhead.loadjs');
     if (is_array($load) && count($load) > 0):
 
     $loadID = '*';
@@ -42,7 +45,7 @@
                             $dep = str_replace('img!', '', $dep);
                         }
                         if (class_exists('\Bnomei\Fingerprint')) {
-                            $dep = \Bnomei\Fingerprint::process($dep)['hash'];
+                            $dep = Fingerprint::process($dep)['hash'];
                         }
                         echo "'" . $prefix.$dep . "'" . ($dc != count($deps) ? ',' : '').PHP_EOL    ;
                     }

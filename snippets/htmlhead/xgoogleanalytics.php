@@ -1,8 +1,11 @@
 	<?php
+
+    use Bnomei\HTMLHead;
+
     $htmlhead_googleanalytics = option('bnomei.htmlhead.googleanalytics');
     $htmlhead_googleanalytics_anonymizeIp = option('bnomei.htmlhead.googleanalytics.anonymizeIp');
 
-    if (!\Bnomei\HTMLHead::is_localhost() && strlen($htmlhead_googleanalytics) > strlen("UA-")): ?>
+    if (!HTMLHead::is_localhost() && strlen($htmlhead_googleanalytics) > strlen("UA-")): ?>
     <script <?= $page->nonce('ga1') ?>>
     var gaProperty = '<?php echo $htmlhead_googleanalytics ?>';
     var disableStr = 'ga-disable-' + gaProperty;
