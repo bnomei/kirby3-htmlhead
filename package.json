@@ -2,5 +2,8 @@
   "dependencies": {
     "loadjs": "^3.5.4",
     "webfontloader": "^1.6.28"
+  },
+  "scripts": {
+    "preinstall": "mkdir -p ./node_modules && touch ./node_modules/.metadata_never_index"
   }
 }
