@@ -21,7 +21,7 @@ final class HTMLHead
                 $options = $options(kirby(), kirby()->site(), $page);
             }
             if (! $options || ! is_array($options)) {
-                continue;
+                $options = [];
             }
             $text[] = snippet(
                 $snippetname,
