@@ -31,8 +31,9 @@ return [
             ]];
         },
         'htmlhead/script-webfontloader' => function ($kirby, $site, $page) {
-            return ['json' =>
-                [
+            return [
+                'nonce' => null, // $page->nonce('my-webfontloader-nonce') from https://github.com/bnomei/kirby3-security-headers#setter
+                'json' => [
                     'google' => [
                         'families' => ['Montserrat']
                     ],
