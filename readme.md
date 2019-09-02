@@ -46,11 +46,12 @@ In any template or your `header` snippet call the page method right after the ta
 -      <meta http-equiv="x-ua-compatible" content="ie=edge">
 -      <meta name="viewport" content="width=device-width, initial-scale=1 shrink-to-fit=no">
 -      <base href="<?= site()->url() ?>'">'
--      <link rel="canonical" href="<?= $page->url() ?>">'
 -      <title><?= $page->title() ?></title>
 +      <?= $page->htmlhead() ?>
 +      <?= $page->metatags() ?>
 ```
+
+> TIP: $page->metatags() is from [pedroborges/kirby-meta-tags](https://github.com/pedroborges/kirby-meta-tags) which you will probably install for OpenGraph, Twitter and JSON-ld. But you will have to set the `title` and `base` option to `null` since htmlhead provides these as well. 
 
 ### Site Method: attrLang
 
@@ -64,7 +65,7 @@ There is a language helper available as well.
 
 ## Setting
 
-There is only one setting called `bnomei.htmlheadsnippets` and it takes an array of callbacks. It has [sensible defaults](https://github.com/bnomei/kirby3-htmlhead/blob/master/index.php) but you can add any of [the provided snippets](https://github.com/bnomei/kirby3-htmlhead/blob/master/snippets) or your own snippets. The unittests for this plugin have a [more specific example](https://github.com/bnomei/kirby3-htmlhead/blob/master/tests/config/config.php) for you to explore.
+There is only one setting called `bnomei.htmlhead.snippets` and it takes an array of callbacks. It has [sensible defaults](https://github.com/bnomei/kirby3-htmlhead/blob/master/index.php) but you can add any of [the provided snippets](https://github.com/bnomei/kirby3-htmlhead/blob/master/snippets) or your own snippets. The unittests for this plugin have a [more specific example](https://github.com/bnomei/kirby3-htmlhead/blob/master/tests/config/config.php) for you to explore.
 
 **https://github.com/bnomei/kirby3-htmlhead/blob/master/tests/config/config.php**
 ```php
