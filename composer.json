@@ -64,6 +64,12 @@
       "yarn",
       "cp -f node_modules/loadjs/dist/loadjs.min.js assets/js/loadjs.min.js",
       "cp -f node_modules/webfontloader/webfontloader.js assets/js/webfontloader.js"
+    ],
+    "kirby": [
+      "composer install",
+      "composer update",
+      "composer install --working-dir=tests/kirby --no-dev --optimize-autoloader",
+      "composer update --working-dir=tests/kirby"
     ]
   },
   "extra": {
