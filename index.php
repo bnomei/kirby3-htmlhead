@@ -4,43 +4,57 @@
 
 Kirby::plugin('bnomei/htmlhead', [
     'options' => [
-      'indent' => '    ',
-      'a11ycssdebugOnly' => null,
-      'a11ycss' => 'https://rawgit.com/ffoodd/a11y.css/master/css/a11y-en.css',
-      'feed' => false,
-      'webfontloader' => false,
-      'css' => [],
-      'js' => [],
-      'loadjs' => [],
-      'snippets' => [],
-      // 'opengraph' => [...] // defaults in snippet
-      // 'seo' => [...] // defaults in snippet
+        'snippets' => [
+            'htmlhead/recommended-minimum' => null,
+            'htmlhead/title' => function ($kirby, $site, $page) {
+                return ['title' => $page->title()];
+            },
+            'htmlhead/base' => function($kirby, $site, $page) {
+                return ['href' => kirby()->site()->url()];
+            },
+            'htmlhead/meta-robots' => function ($kirby, $site, $page) {
+                return ['content' => 'index, follow, noodp'];
+            },
+            /*
+            'htmlhead/link-css' => function ($kirby, $site, $page) {
+                return ['files' => []];
+            },
+            'htmlhead/link-js' => function ($kirby, $site, $page) {
+                return ['files' => []];
+            },
+            */
+        ],
     ],
     'snippets' => [
-      'plugin-htmlhead' => __DIR__ . '/snippets/plugin-htmlhead.php',
-      'htmlhead/a11ycss' => __DIR__ . '/snippets/htmlhead/a11ycss.php',
-      'htmlhead/css' => __DIR__ . '/snippets/htmlhead/css.php',
-      'htmlhead/js' => __DIR__ . '/snippets/htmlhead/js.php',
-      'htmlhead/feed' => __DIR__ . '/snippets/htmlhead/feed.php',
-      'htmlhead/opengraph' => __DIR__ . '/snippets/htmlhead/opengraph.php',
-      'htmlhead/seo' => __DIR__ . '/snippets/htmlhead/seo.php',
-      'htmlhead/loadjs' => __DIR__ . '/snippets/htmlhead/loadjs.php',
-      'htmlhead/webfontloader' => __DIR__ . '/snippets/htmlhead/webfontloader.php',
+        'htmlhead/alternates' => __DIR__ . '/snippets/htmlhead/alternates.php',
+        'htmlhead/base' => __DIR__ . '/snippets/htmlhead/base.php',
+        'htmlhead/canonical' => __DIR__ . '/snippets/htmlhead/canonical.php',
+        'htmlhead/google-analytics' => __DIR__ . '/snippets/htmlhead/google-analytics.php',
+        'htmlhead/google-globalsitetag' => __DIR__ . '/snippets/htmlhead/google-globalsitetag.php',
+        'htmlhead/google-tagmanager' => __DIR__ . '/snippets/htmlhead/google-tagmanager.php',
+        'htmlhead/link-a11ycss' => __DIR__ . '/snippets/htmlhead/link-a11ycss.php',
+        'htmlhead/link-css' => __DIR__ . '/snippets/htmlhead/link-css.php',
+        'htmlhead/link-feedjson' => __DIR__ . '/snippets/htmlhead/link-feedjson.php',
+        'htmlhead/link-feedrss' => __DIR__ . '/snippets/htmlhead/link-feedrss.php',
+        'htmlhead/meta-author' => __DIR__ . '/snippets/htmlhead/meta-author.php',
+        'htmlhead/meta-description' => __DIR__ . '/snippets/htmlhead/meta-description.php',
+        'htmlhead/meta-robots' => __DIR__ . '/snippets/htmlhead/meta-robots.php',
+        'htmlhead/recommended-minimum' => __DIR__ . '/snippets/htmlhead/recommended-minimum.php',
+        'htmlhead/script-js' => __DIR__ . '/snippets/htmlhead/script-js.php',
+        'htmlhead/script-webfontloader' => __DIR__ . '/snippets/htmlhead/script-webfontloader.php',
+        'htmlhead/title' => __DIR__ . '/snippets/htmlhead/title.php',
     ],
     'pageMethods' => [
-      'htmlhead_snippets' => function () {
-          return \Bnomei\HTMLHead::snippets($this);
-      },
-      'htmlhead_alpha' => function ($title = null) {
-          return \Bnomei\HTMLHead::alpha($this, $title);
-      }
+        'htmlhead' => function ($snippets = []) {
+            return \Bnomei\HTMLHead::snippets($this, $snippets);
+        },
     ],
     'siteMethods' => [
         'attrLang' => function () {
-            if (option('languages')) {
-                return 'lang="'.kirby()->language().'"';
+            if (is_null(kirby()->language())) {
+                return '';
             }
-            return 'lang="'.option('bnomei.htmlhead.lang', 'en').'"';
+            return 'lang="' . kirby()->language()->code() . '"';
         }
     ]
-  ]);
+]);

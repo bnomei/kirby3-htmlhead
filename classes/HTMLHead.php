@@ -1,89 +1,35 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Bnomei;
 
-use Kirby\Toolkit\A;
-use Kirby\Toolkit\Dir;
-use Kirby\Toolkit\F;
-use Kirby\Toolkit\Str;
+use Kirby\Cms\Page;
+use function option;
+use function snippet;
 
-class HTMLHead
+final class HTMLHead
 {
-    public static $snippets = [];
-    public static function snippets($page, $options = [])
+    public static function snippets(Page $page, $snippets = []): string
     {
-        $return = [];
+        $defaults = option('bnomei.htmlhead.snippets', []);
+        $snippets = array_merge($defaults, $snippets);
+        $text = [];
 
-        if (count(self::$snippets) == 0) {
-            foreach (Dir::read(
-                implode(DIRECTORY_SEPARATOR, [
-                __DIR__, '..', 'snippets', 'htmlhead'
-            ])
-        ) as $s) {
-                self::$snippets[] = 'htmlhead/' . F::name($s);
+        foreach ($snippets as $snippetname => $options) {
+            if (is_callable($options)) {
+                $options = $options(kirby(), kirby()->site(), $page);
             }
-        }
-
-        $indent = option('bnomei.htmlhead.indent');
-        $customSnippets = option('bnomei.htmlhead.snippets');
-        if (!is_array($customSnippets)) {
-            $customSnippets = [];
-        }
-        self::$snippets = array_merge(self::$snippets, $customSnippets);
-        sort(self::$snippets);
-
-        foreach (self::$snippets as $snippetname) {
-            if (!A::get($options, $snippetname, true)) {
+            if (! $options || ! is_array($options)) {
                 continue;
             }
-
-            $snip = snippet($snippetname, ['page' => $page, 'indent' => $indent], true);
-            if (Str::length(trim($snip)) == 0) {
-                continue;
-            }
-
-            $snip = explode(PHP_EOL, $snip);
-            $sarr = array_map(function ($line) use ($indent) {
-                return $indent.trim($line).PHP_EOL;
-            }, $snip);
-
-            $return[] = $indent.'<!-- '. Str::upper(str_replace('htmlhead/', '', $snippetname)).' -->'.PHP_EOL;
-            $return = array_merge($return, $sarr);
+            $text[] = snippet(
+                $snippetname,
+                array_merge(['page' => $page], $options),
+                true
+            );
         }
 
-        return implode($return);
-    }
-
-    public static function alpha($page, $title = null, $metatags = [])
-    {
-        $firstmetatags = [
-        '<meta charset="utf-8">',
-        '<meta http-equiv="x-ua-compatible" content="ie=edge">',
-        '<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">',
-        '<base href="'.kirby()->site()->url().'">',
-        '<link rel="canonical" href="'.$page->url() .'">',
-      ];
-        $firstmetatags = array_merge($firstmetatags, $metatags);
-
-        if ($title == null) {
-            $title = Str::unhtml($page->title());
-        }
-        if ($title != false) {
-            $firstmetatags[] = '<title>'.$title.'</title>';
-        }
-
-        $indent = option('bnomei.htmlhead.indent');
-        $firstmetatags = array_map(function ($line) use ($indent) {
-            return $indent.trim($line).PHP_EOL;
-        }, $firstmetatags);
-        return implode($firstmetatags).PHP_EOL;
-    }
-
-    public static function is_localhost()
-    {
-        $whitelist = array( '127.0.0.1', '::1' );
-        if (in_array($_SERVER['REMOTE_ADDR'], $whitelist)) {
-            return true;
-        }
+        return implode(PHP_EOL, $text);
     }
 }
