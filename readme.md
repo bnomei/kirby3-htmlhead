@@ -53,6 +53,20 @@ In any template or your `header` snippet call the page method right after the ta
 
 > TIP: $page->metatags() is from [pedroborges/kirby-meta-tags](https://github.com/pedroborges/kirby-meta-tags) which you will probably install for OpenGraph, Twitter and JSON-ld. But you will have to set the `title` and `base` option to `null` since htmlhead provides these as well. 
 
+You can also override any defaults in forwarding the **new or additional** data to the page method.
+```php
+<?= $page->htmlhead([
+    // override defaults
+    'htmlhead/meta-robots' => function ($kirby, $site, $page) {
+        return ['content' => 'noindex']; // do not index this page
+    },
+    // add new
+    'htmlhead/link-feedrss' => function ($kirby, $site, $page) {
+        return []; // use defaults of snippet
+    },
+]) ?>
+```
+
 ### Site Method: attrLang
 
 There is a language helper available as well.
