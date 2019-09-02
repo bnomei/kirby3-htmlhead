@@ -58,7 +58,7 @@ There is a language helper available as well.
 
 ```php
 <html <?= site()->attrLang() ?>>
-<!-- ... ->
+<!-- ... -->
 </html>
 ```
 
