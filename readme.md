@@ -39,6 +39,7 @@ This plugin is free but if you use it in a commercial project please consider to
 In any template or your `header` snippet call the page method right after the tags that should come first.
 
 ```diff
+   <!DOCTYPE html>
 -  <html>
 +  <html <?= site()->attrLang() ?>>
    <body>
