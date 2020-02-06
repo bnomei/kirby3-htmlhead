@@ -1,6 +1,9 @@
 <?php
 $files = $files ?? [];
 foreach ($files as $dep) {
+    if (strlen(trim($dep)) === 0) {
+        continue;
+    }
     $options = [];
     if (strpos($dep, '|') !== false) {
         list($dep, $integrity) = explode('|', $dep);
