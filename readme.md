@@ -50,10 +50,10 @@ In any template or your `header` snippet call the page method right after the ta
 -      <base href="<?= site()->url() ?>'">'
 -      <title><?= $page->title() ?></title>
 +      <?= $page->htmlhead() ?>
-+      <?= $page->metatags() ?>
++      <?= $page->metaTags(['og', 'twitter', 'json-ld']) ?>
 ```
 
-> TIP: $page->metatags() is from [pedroborges/kirby-meta-tags](https://github.com/pedroborges/kirby-meta-tags) which you will probably install for OpenGraph, Twitter and JSON-ld. But you will have to set the `title` and `base` option to `null` since htmlhead provides these as well. 
+> TIP: `$page->metaTags()` is from [pedroborges/kirby-meta-tags](https://github.com/pedroborges/kirby-meta-tags) which you will probably install for OpenGraph, Twitter and JSON-ld. But you will have to either set the `title` and `base` option to `null` in its config or specify which tags to render and omit `title` and `base`.
 
 You can also override any defaults in forwarding the **new or additional** data to the page method.
 ```php
