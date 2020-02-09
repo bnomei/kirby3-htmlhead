@@ -72,7 +72,8 @@ You can also override any defaults in forwarding the **new or additional** data 
 There is a language helper available as well.
 
 ```php
-<html <?= site()->attrLang() ?>>
+<?php ?>
+<html <?= site()->langAttr() ?>>
 <!-- ... -->
 </html>
 ```
@@ -96,6 +97,12 @@ return [
         },
         'htmlhead/base' => function ($kirby, $site, $page) {
             return ['href' => kirby()->site()->url()];
+        },
+        'htmlhead/link-preload' => function ($kirby, $site, $page) {
+            return ['files' => ['/assets/app.css', '/endpoint/data.json']];
+        },
+        'htmlhead/link-prefetch' => function ($kirby, $site, $page) {
+            return ['files' => ['/assets/next-page.js']];
         },
         'htmlhead/meta-robots' => function ($kirby, $site, $page) {
             return ['content' => 'index, follow, noodp'];

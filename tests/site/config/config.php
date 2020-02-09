@@ -12,6 +12,12 @@ return [
         'htmlhead/base' => function ($kirby, $site, $page) {
             return ['href' => kirby()->site()->url()];
         },
+        'htmlhead/link-preload' => function ($kirby, $site, $page) {
+            return ['files' => ['/assets/app.css', '/endpoint/data.json']];
+        },
+        'htmlhead/link-prefetch' => function ($kirby, $site, $page) {
+            return ['files' => ['/assets/next-page.js']];
+        },
         'htmlhead/meta-robots' => function ($kirby, $site, $page) {
             return ['content' => 'index, follow, noodp'];
         },

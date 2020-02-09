@@ -36,6 +36,8 @@ Kirby::plugin('bnomei/htmlhead', [
         'htmlhead/link-css' => __DIR__ . '/snippets/htmlhead/link-css.php',
         'htmlhead/link-feedjson' => __DIR__ . '/snippets/htmlhead/link-feedjson.php',
         'htmlhead/link-feedrss' => __DIR__ . '/snippets/htmlhead/link-feedrss.php',
+        'htmlhead/link-preload' => __DIR__ . '/snippets/htmlhead/link-preload.php',
+        'htmlhead/link-prefetch' => __DIR__ . '/snippets/htmlhead/link-prefetch.php',
         'htmlhead/meta-author' => __DIR__ . '/snippets/htmlhead/meta-author.php',
         'htmlhead/meta-description' => __DIR__ . '/snippets/htmlhead/meta-description.php',
         'htmlhead/meta-robots' => __DIR__ . '/snippets/htmlhead/meta-robots.php',
@@ -51,6 +53,12 @@ Kirby::plugin('bnomei/htmlhead', [
     ],
     'siteMethods' => [
         'attrLang' => function () {
+            if (is_null(kirby()->language())) {
+                return '';
+            }
+            return 'lang="' . kirby()->language()->code() . '"';
+        },
+        'langAttr' => function () {
             if (is_null(kirby()->language())) {
                 return '';
             }
