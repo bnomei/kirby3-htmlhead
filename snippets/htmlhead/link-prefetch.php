@@ -24,5 +24,5 @@ foreach ($files as $dep) {
     if (class_exists('\Bnomei\Fingerprint')) {
         $options['href'] = Bnomei\Fingerprint::url($options['href']);
     }
-    echo Html::tag('link', null, $options);
+    echo Html::tag('link', null, $options) . PHP_EOL;
 }
