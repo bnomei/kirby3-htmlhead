@@ -41,7 +41,7 @@ In any template or your `header` snippet call the page method right after the ta
 ```diff
    <!DOCTYPE html>
 -  <html>
-+  <html <?= site()->attrLang() ?>>
++  <html <?= site()->langAttr() ?>>
    <body>
      <head>
 -      <meta charset="utf-8">
