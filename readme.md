@@ -39,19 +39,21 @@ This plugin is free but if you use it in a commercial project please consider to
 In any template or your `header` snippet call the page method right after the tags that should come first.
 
 ```diff
+   <!DOCTYPE html>
 -  <html>
 +  <html <?= site()->attrLang() ?>>
    <body>
+     <head>
 -      <meta charset="utf-8">
 -      <meta http-equiv="x-ua-compatible" content="ie=edge">
 -      <meta name="viewport" content="width=device-width, initial-scale=1 shrink-to-fit=no">
 -      <base href="<?= site()->url() ?>'">'
 -      <title><?= $page->title() ?></title>
 +      <?= $page->htmlhead() ?>
-+      <?= $page->metatags() ?>
++      <?= $page->metaTags(['og', 'twitter', 'json-ld']) ?>
 ```
 
-> TIP: $page->metatags() is from [pedroborges/kirby-meta-tags](https://github.com/pedroborges/kirby-meta-tags) which you will probably install for OpenGraph, Twitter and JSON-ld. But you will have to set the `title` and `base` option to `null` since htmlhead provides these as well. 
+> TIP: `$page->metaTags()` is from [pedroborges/kirby-meta-tags](https://github.com/pedroborges/kirby-meta-tags) which you will probably install for OpenGraph, Twitter and JSON-ld. But you will have to either set the `title` and `base` option to `null` in its config or specify which tags to render and omit `title` and `base`.
 
 You can also override any defaults in forwarding the **new or additional** data to the page method.
 ```php
