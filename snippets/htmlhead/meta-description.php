@@ -1,1 +1,1 @@
-<meta property="description" content="<?= $content ?>">
+<meta name="description" content="<?= $content ?>">
