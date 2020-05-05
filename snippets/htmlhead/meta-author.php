@@ -1,1 +1,1 @@
-<meta property="author" content="<?= $content ?>">
+<meta name="author" content="<?= $content ?>">
