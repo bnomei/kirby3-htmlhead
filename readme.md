@@ -38,7 +38,6 @@ In any template or your `header` snippet call the page method right after the ta
    <!DOCTYPE html>
 -  <html>
 +  <html <?= site()->langAttr() ?>>
-   <body>
      <head>
 -      <meta charset="utf-8">
 -      <meta http-equiv="x-ua-compatible" content="ie=edge">
