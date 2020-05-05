@@ -1,1 +1,1 @@
-<meta property="robots" content="<?= $content ?>">
+<meta name="robots" content="<?= $content ?>">
