@@ -19,7 +19,7 @@ Kirby::plugin('bnomei/htmlhead', [
             'htmlhead/link-css' => function ($kirby, $site, $page) {
                 return ['files' => []];
             },
-            'htmlhead/link-js' => function ($kirby, $site, $page) {
+            'htmlhead/script-js' => function ($kirby, $site, $page) {
                 return ['files' => []];
             },
             */
