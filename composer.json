@@ -2,7 +2,7 @@
   "name": "bnomei/kirby3-htmlhead",
   "description": "Kirby 3 Plugin for a best-practice HTML Head Element extendable with snippets.",
   "type": "kirby-plugin",
-  "version": "2.1.6",
+  "version": "2.1.7",
   "license": "MIT",
   "authors": [
     {
@@ -45,8 +45,7 @@
   "require-dev": {
     "phpunit/phpunit": "^8.3",
     "getkirby/cms": "^3.2",
-    "php-coveralls/php-coveralls": "^2.1",
-    "nunomaduro/phpinsights": "^1.8"
+    "php-coveralls/php-coveralls": "^2.1"
   },
   "scripts": {
     "analyze": "phpstan analyse classes",
