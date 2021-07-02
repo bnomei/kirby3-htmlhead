@@ -4,9 +4,9 @@ foreach ($files as $dep) {
     $options = [];
     if (is_array($dep)) {
         $options = $dep;
-        $dep = A::get($options, 'href');
-        if (array_key_exists('href', $options)) {
-            unset($options['href']);
+        $dep = A::get($options, 'src');
+        if (array_key_exists('src', $options)) {
+            unset($options['src']);
         }
     }
     if (empty($dep)) {

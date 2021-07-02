@@ -116,7 +116,7 @@ return [
         'htmlhead/script-js' => function ($kirby, $site, $page) {
             return ['files' => [
                 [
-                    'href' => '//unpkg.com/alpinejs', 
+                    'src' => '//unpkg.com/alpinejs', 
                     'defer' => true,
                 ],
                 '/assets/app.js',
