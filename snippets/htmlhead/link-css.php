@@ -1,16 +1,23 @@
 <?php
 $files = $files ?? [];
 foreach ($files as $dep) {
-    if (strlen(trim($dep)) === 0) {
+    $options = [];
+    if (is_array($dep)) {
+        $options = $dep;
+        $dep = A::get($options, 'href');
+        if (array_key_exists('href', $options)) {
+            unset($options['href']);
+        }
+    }
+    if (empty($dep)) {
         continue;
     }
-    $options = [];
     if (strpos($dep, '|') !== false) {
         list($dep, $integrity) = explode('|', $dep);
-        $options = [
+        $options = array_merge([
             'integrity' => $integrity,
             'crossorigin' => 'anonymous',
-        ];
+        ], $options);
     }
     if (class_exists('\Bnomei\Fingerprint')) {
         echo Bnomei\Fingerprint::css($dep, $options) . PHP_EOL;
