@@ -19,6 +19,8 @@ foreach ($files as $dep) {
             $options['as'] = 'style';
         } elseif(Str::contains($dep, '.json')) {
             $options['as'] = 'fetch';
+        } elseif(Str::contains($dep, '.woff')) {
+            $options['as'] = 'font';
         }
     }
     if (class_exists('\Bnomei\Fingerprint')) {
