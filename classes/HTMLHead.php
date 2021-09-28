@@ -17,7 +17,7 @@ final class HTMLHead
         $text = [];
 
         foreach ($snippets as $snippetname => $options) {
-            if (is_callable($options)) {
+            if ($options && is_callable($options)) {
                 $options = $options(kirby(), kirby()->site(), $page);
             }
             if (! $options || ! is_array($options)) {

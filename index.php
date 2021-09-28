@@ -7,7 +7,7 @@ Kirby::plugin('bnomei/htmlhead', [
         'snippets' => [
             'htmlhead/recommended-minimum' => null,
             'htmlhead/title' => function ($kirby, $site, $page) {
-                return ['title' => $page->title()];
+                return ['title' => $page->title()->value()];
             },
             'htmlhead/base' => function($kirby, $site, $page) {
                 return ['href' => kirby()->site()->url()];

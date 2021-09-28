@@ -1,7 +1,7 @@
 <?php return array(
     'root' => array(
-        'pretty_version' => '2.1.12',
-        'version' => '2.1.12.0',
+        'pretty_version' => '2.1.13',
+        'version' => '2.1.13.0',
         'type' => 'kirby-plugin',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
@@ -11,8 +11,8 @@
     ),
     'versions' => array(
         'bnomei/kirby3-htmlhead' => array(
-            'pretty_version' => '2.1.12',
-            'version' => '2.1.12.0',
+            'pretty_version' => '2.1.13',
+            'version' => '2.1.13.0',
             'type' => 'kirby-plugin',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
