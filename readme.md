@@ -10,7 +10,7 @@
 
 Kirby 3 Plugin for a best-practice HTML Head Element extendable with snippets.
 
-## Commerical Usage
+## Commercial Usage
 
 > <br>
 ><b>Support open source!</b><br><br>
