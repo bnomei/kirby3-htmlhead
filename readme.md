@@ -32,10 +32,21 @@ Kirby 3 Plugin for a best-practice HTML Head Element extendable with snippets.
 
 ## Works well with
 
-- [pedroborges/kirby-meta-tags](https://github.com/pedroborges/kirby-meta-tags) to add OpenGraph, Twitter and JSON-ld
+- [fabianmichael/kirby-meta](https://github.com/fabianmichael/kirby-meta) to add OpenGraph, Twitter and JSON-ld
 - and some of my [other Plugins](https://github.com/bnomei/kirby3-htmlhead/blob/master/composer.json#L76)
 
 ## Usage
+
+### Site Method: attrLang
+
+There is a language helper available as well.
+
+```php
+<?php ?>
+<html <?= site()->langAttr() ?>>
+<!-- ... -->
+</html>
+```
 
 ### Page Method: htmlhead
 
@@ -52,17 +63,14 @@ In any template or your `header` snippet call the page method right after the ta
 -      <base href="<?= site()->url() ?>'">'
 -      <title><?= $page->title() ?></title>
 +      <?= $page->htmlhead() ?>
-+      <?= $page->metaTags(['og', 'twitter', 'json-ld']) ?>
 ```
-
-> TIP: `$page->metaTags()` is from [pedroborges/kirby-meta-tags](https://github.com/pedroborges/kirby-meta-tags) which you will probably install for OpenGraph, Twitter and JSON-ld. But you will have to either set the `title` and `base` option to `null` in its config or specify which tags to render and omit `title` and `base`.
 
 You can also override any defaults in forwarding the **new or additional** data to the page method.
 ```php
 <?= $page->htmlhead([
     // override defaults
-    'htmlhead/meta-robots' => function ($kirby, $site, $page) {
-        return ['content' => 'noindex']; // do not index this page
+    'htmlhead/meta-description' => function ($kirby, $site, $page) {
+        return Str::unhtml($page->myDescriptionField()->kti());
     },
     // add new
     'htmlhead/link-feedrss' => function ($kirby, $site, $page) {
@@ -71,16 +79,7 @@ You can also override any defaults in forwarding the **new or additional** data 
 ]) ?>
 ```
 
-### Site Method: attrLang
-
-There is a language helper available as well.
-
-```php
-<?php ?>
-<html <?= site()->langAttr() ?>>
-<!-- ... -->
-</html>
-```
+But I would recommend that you configure which snippets are use with the config settings (see below).
 
 ## Setting
 
@@ -108,14 +107,8 @@ return [
         'htmlhead/link-prefetch' => function ($kirby, $site, $page) {
             return ['files' => ['/assets/next-page.js']];
         },
-        'htmlhead/meta-robots' => function ($kirby, $site, $page) {
-            return ['content' => 'index, follow, noodp'];
-        },
-        'htmlhead/meta-author' => function ($kirby, $site, $page) {
-            return ['content' => $site->author()];
-        },
-        'htmlhead/meta-description' => function ($kirby, $site, $page) {
-            return ['content' => Str::unhtml($page->seodesc())];
+        'htmlhead/meta' => function ($kirby, $site, $page) {
+            return []; // https://github.com/fabianmichael/kirby-meta
         },
         'htmlhead/link-css' => function ($kirby, $site, $page) {
             return ['files' => ['/assets/app.css']];
@@ -139,9 +132,6 @@ return [
                     ],
                 ],
             ];
-        },
-        'htmlhead/link-a11ycss' => function ($kirby, $site, $page) {
-            return ['url' => 'https://github.com/ffoodd/a11y.css/blob/master/css/a11y-en_errors-only.css'];
         },
         'htmlhead/link-feedrss' => function ($kirby, $site, $page) {
             // defaults
