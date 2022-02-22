@@ -12,6 +12,11 @@ return [
         'htmlhead/base' => function ($kirby, $site, $page) {
             return ['href' => kirby()->site()->url()];
         },
+        /*
+        'htmlhead/meta' => function ($kirby, $site, $page) {
+            return [];
+        },
+        */
         'htmlhead/link-preload' => function ($kirby, $site, $page) {
             return ['files' => ['/assets/app.css', '/endpoint/data.json']];
         },

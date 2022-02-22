@@ -101,14 +101,17 @@ return [
         'htmlhead/base' => function ($kirby, $site, $page) {
             return ['href' => kirby()->site()->url()];
         },
+        /* 
+          // https://github.com/fabianmichael/kirby-meta
+         'htmlhead/meta' => function ($kirby, $site, $page) {
+            return [];
+         },
+         */
         'htmlhead/link-preload' => function ($kirby, $site, $page) {
             return ['files' => ['/assets/app.css', '/endpoint/data.json']];
         },
         'htmlhead/link-prefetch' => function ($kirby, $site, $page) {
             return ['files' => ['/assets/next-page.js']];
-        },
-        'htmlhead/meta' => function ($kirby, $site, $page) {
-            return []; // https://github.com/fabianmichael/kirby-meta
         },
         'htmlhead/link-css' => function ($kirby, $site, $page) {
             return ['files' => ['/assets/app.css']];
