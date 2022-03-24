@@ -2,7 +2,7 @@
 
 $files = $files ?? [];
 foreach ($files as $dep) {
-    if (strlen(trim($dep)) === 0) {
+    if (!$dep || strlen(trim($dep)) === 0) {
         continue;
     }
     $options['rel'] = 'prefetch';
