@@ -2,7 +2,7 @@
 
 $urls = $urls ?? [];
 foreach ($urls as $url) {
-    if (strlen(trim($url)) === 0) {
+    if (!$url || strlen(trim($url)) === 0) {
         continue;
     }
     $options['rel'] = 'preconnect';
