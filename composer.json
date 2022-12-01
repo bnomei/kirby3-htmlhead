@@ -2,7 +2,7 @@
   "name": "bnomei/kirby3-htmlhead",
   "description": "Kirby 3 Plugin for a best-practice HTML Head Element extendable with snippets.",
   "type": "kirby-plugin",
-  "version": "3.0.2",
+  "version": "3.1.0",
   "license": "MIT",
   "authors": [
     {
@@ -20,16 +20,12 @@
     "best-practice",
     "rss-feed",
     "json-feed",
-    "google-analytics",
-    "typekit",
-    "google-webfonts",
     "accessibility",
     "google-analytics",
     "google-globalsitetag",
     "google-tag-manager",
     "fathom",
     "matomo",
-    "webfontloader",
     "json-ld",
     "meta-tags",
     "preload",
@@ -37,6 +33,7 @@
     "instantpage",
     "opengraph",
     "twitter-cards",
+    "umami",
     "robotstxt"
   ],
   "autoload": {
@@ -46,10 +43,13 @@
   },
   "config": {
     "optimize-autoloader": true,
-    "sort-packages": true
+    "sort-packages": true,
+    "allow-plugins": {
+      "getkirby/composer-installer": true
+    }
   },
   "require": {
-    "php": ">=7.4.0",
+    "php": ">=8.0.0",
     "getkirby/composer-installer": "^1.1"
   },
   "require-dev": {

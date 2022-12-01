@@ -122,19 +122,8 @@ return [
                     'src' => '//unpkg.com/alpinejs', 
                     'defer' => true,
                 ],
-                '/assets/app.js',
-                'https://cdn.jsdelivr.net/npm/webfontloader@1.6.28/webfontloader.min.js|sha256-4O4pS1SH31ZqrSO2A/2QJTVjTPqVe+jnYgOWUVr7EEc=',
+                '/assets/app.js'            
             ]];
-        },
-        'htmlhead/script-webfontloader' => function ($kirby, $site, $page) {
-            return [
-                'nonce' => null, // $page->nonceAttr('my-webfontloader-nonce') from https://github.com/bnomei/kirby3-security-headers#setter
-                'json' => [
-                    'google' => [
-                        'families' => ['Montserrat']
-                    ],
-                ],
-            ];
         },
         'htmlhead/link-feedrss' => function ($kirby, $site, $page) {
             // defaults

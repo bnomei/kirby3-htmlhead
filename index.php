@@ -50,8 +50,8 @@ Kirby::plugin('bnomei/htmlhead', [
         'htmlhead/recommended-minimum' => __DIR__ . '/snippets/htmlhead/recommended-minimum.php',
         'htmlhead/script-js' => __DIR__ . '/snippets/htmlhead/script-js.php',
         'htmlhead/script-instantpage' => __DIR__ . '/snippets/htmlhead/script-instantpage.php',
-        'htmlhead/script-webfontloader' => __DIR__ . '/snippets/htmlhead/script-webfontloader.php',
         'htmlhead/title' => __DIR__ . '/snippets/htmlhead/title.php',
+        'htmlhead/umami' => __DIR__ . '/snippets/htmlhead/umami.php',
     ],
     'pageMethods' => [
         'htmlhead' => function ($snippets = []) {
