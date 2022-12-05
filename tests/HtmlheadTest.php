@@ -24,6 +24,5 @@ final class HtmlheadTest extends TestCase
         $this->assertStringContainsString('<script src="/assets/app.js"></script>', $snippets);
         $this->assertStringContainsString('<link href="https://github.com/ffoodd/a11y.css/blob/master/css/a11y-en_errors-only.css" media="screen" rel="stylesheet">', $snippets);
         $this->assertStringContainsString('<link href="/feed" rel="alternate" title="Home" type="application/rss+xml">', $snippets);
-        $this->assertStringContainsString('Montserrat', $snippets);
     }
 }
