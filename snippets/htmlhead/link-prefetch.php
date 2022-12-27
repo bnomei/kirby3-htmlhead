@@ -13,11 +13,11 @@ foreach ($files as $dep) {
         $options['as'] = $as;
     } else {
         // https://developer.mozilla.org/en-US/docs/Web/HTML/Preloading_content
-        if(Str::contains($dep, '.js')) {
+        if (Str::contains($dep, '.js')) {
             $options['as'] = 'script';
-        } elseif(Str::contains($dep, '.css')) {
+        } elseif (Str::contains($dep, '.css')) {
             $options['as'] = 'style';
-        } elseif(Str::contains($dep, '.json')) {
+        } elseif (Str::contains($dep, '.json')) {
             $options['as'] = 'fetch';
         }
     }

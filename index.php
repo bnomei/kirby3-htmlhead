@@ -9,7 +9,7 @@ Kirby::plugin('bnomei/htmlhead', [
             'htmlhead/title' => function ($kirby, $site, $page) {
                 return ['title' => $page->title()->value()];
             },
-            'htmlhead/base' => function($kirby, $site, $page) {
+            'htmlhead/base' => function ($kirby, $site, $page) {
                 return ['href' => kirby()->site()->url()];
             },
             'htmlhead/meta' => function ($kirby, $site, $page) {

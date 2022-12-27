@@ -1,4 +1,5 @@
 <?php
+
 $files = $files ?? [];
 foreach ($files as $dep) {
     $options = [];

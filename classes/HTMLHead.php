@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Bnomei;
 
 use Kirby\Cms\Page;
+
 use function option;
 use function snippet;
 

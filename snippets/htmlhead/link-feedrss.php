@@ -1,4 +1,5 @@
 <?php
+
 echo HTML::tag('link', '', [
     'rel' =>  'alternate',
     'type' => 'application/rss+xml',

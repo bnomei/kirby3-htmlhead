@@ -12,15 +12,17 @@ foreach ($files as $dep) {
         $options['href'] = $href;
         $options['as'] = $as;
     } else {
-        // https://developer.mozilla.org/en-US/docs/Web/HTML/Preloading_content
-        if(Str::contains($dep, '.js')) {
+        // https://developer.mozilla.org/en-US/docs/Web/HTML/Link_types/preload
+        if (Str::contains($dep, '.js')) {
             $options['as'] = 'script';
-        } elseif(Str::contains($dep, '.css')) {
+        } elseif (Str::contains($dep, '.css')) {
             $options['as'] = 'style';
-        } elseif(Str::contains($dep, '.json')) {
+        } elseif (Str::contains($dep, '.json')) {
             $options['as'] = 'fetch';
-        } elseif(Str::contains($dep, '.woff')) {
+        } elseif (Str::contains($dep, '.woff')) {
             $options['as'] = 'font';
+        } elseif (Str::contains($dep, '.svg') || Str::contains($dep, '.png') || Str::contains($dep, '.jpg') || Str::contains($dep, '.gif')  || Str::contains($dep, '.avif')  || Str::contains($dep, '.webp')) {
+            $options['as'] = 'image';
         }
     }
     if (class_exists('\Bnomei\Fingerprint')) {
