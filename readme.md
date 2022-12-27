@@ -13,7 +13,7 @@ Kirby 3 Plugin for a best-practice HTML Head Element extendable with snippets.
 ## Commercial Usage
 
 > <br>
-><b>Support open source!</b><br><br>
+> <b>Support open source!</b><br><br>
 > This plugin is free but if you use it in a commercial project please consider to sponsor me or make a donation.<br>
 > If my work helped you to make some cash it seems fair to me that I might get a little reward as well, right?<br><br>
 > Be kind. Share a little. Thanks.<br><br>
@@ -32,7 +32,7 @@ Kirby 3 Plugin for a best-practice HTML Head Element extendable with snippets.
 
 ## Works well with
 
-- [fabianmichael/kirby-meta](https://github.com/fabianmichael/kirby-meta) to add OpenGraph, Twitter and JSON-ld
+- [fabianmichael/kirby-meta](https://github.com/fabianmichael/kirby-meta) to add OpenGraph and JSON-ld
 - and some of my [other Plugins](https://github.com/bnomei/kirby3-htmlhead/blob/master/composer.json#L76)
 
 ## Usage
@@ -103,6 +103,7 @@ return [
         },
         /* 
           // https://github.com/fabianmichael/kirby-meta
+          // remove `htmlhead/title` and `htmlhead/base` and add
          'htmlhead/meta' => function ($kirby, $site, $page) {
             return [];
          },

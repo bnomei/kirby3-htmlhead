@@ -1,4 +1,4 @@
 <?php
 
-    // https://github.com/bnomei/kirby-meta
+    // https://github.com/fabianmichael/kirby-meta
     snippet('meta');

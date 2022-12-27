@@ -4,26 +4,7 @@
 
 Kirby::plugin('bnomei/htmlhead', [
     'options' => [
-        'snippets' => [
-            'htmlhead/recommended-minimum' => null,
-            'htmlhead/title' => function ($kirby, $site, $page) {
-                return ['title' => $page->title()->value()];
-            },
-            'htmlhead/base' => function ($kirby, $site, $page) {
-                return ['href' => kirby()->site()->url()];
-            },
-            'htmlhead/meta' => function ($kirby, $site, $page) {
-                return [];
-            },
-            /*
-            'htmlhead/link-css' => function ($kirby, $site, $page) {
-                return ['files' => []];
-            },
-            'htmlhead/script-js' => function ($kirby, $site, $page) {
-                return ['files' => []];
-            },
-            */
-        ],
+        'snippets' => [],
     ],
     'snippets' => [
         'htmlhead/base' => __DIR__ . '/snippets/htmlhead/base.php',
