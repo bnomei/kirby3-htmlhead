@@ -92,39 +92,54 @@ There is only one setting called `bnomei.htmlhead.snippets` and it takes an arra
 return [
     'bnomei.htmlhead.snippets' => [
         /********************************
-         * IMPORTANT: order matters!
+         * IMPORTANT: order matters! based on research from @csswizardry
          */
         'htmlhead/recommended-minimum' => null,
         'htmlhead/title' => function ($kirby, $site, $page) {
             return ['title' => $page->title()];
         },
-        'htmlhead/base' => function ($kirby, $site, $page) {
-            return ['href' => kirby()->site()->url()];
-        },
-        /* 
-          // https://github.com/fabianmichael/kirby-meta
-          // remove `htmlhead/title` and `htmlhead/base` and add
-         'htmlhead/meta' => function ($kirby, $site, $page) {
-            return [];
-         },
-         */
-        'htmlhead/link-preload' => function ($kirby, $site, $page) {
-            return ['files' => ['/assets/app.css', '/endpoint/data.json']];
-        },
-        'htmlhead/link-prefetch' => function ($kirby, $site, $page) {
-            return ['files' => ['/assets/next-page.js']];
+        // async first then sync js scripts
+        'htmlhead/script-js' => function ($kirby, $site, $page) {
+            return ['files' => [
+                '/assets/app.js'            
+            ]];
         },
         'htmlhead/link-css' => function ($kirby, $site, $page) {
             return ['files' => ['/assets/app.css']];
         },
-        'htmlhead/script-js' => function ($kirby, $site, $page) {
+        'htmlhead/link-preload' => function ($kirby, $site, $page) {
+            return ['files' => ['/assets/app.css', '/endpoint/data.json']];
+        },
+        // deferred scripts after sync css is faster
+        'htmlhead/script-js-defer' => function ($kirby, $site, $page) {
             return ['files' => [
                 [
                     'src' => '//unpkg.com/alpinejs', 
                     'defer' => true,
-                ],
-                '/assets/app.js'            
+                ],        
             ]];
+        },
+        'htmlhead/link-prefetch' => function ($kirby, $site, $page) {
+            return ['files' => ['/assets/next-page.js']];
+        },
+        'htmlhead/base' => function ($kirby, $site, $page) {
+            return ['href' => kirby()->site()->url()];
+        },
+        'htmlhead/meta-robots' => function ($kirby, $site, $page) {
+            return ['content' => 'index, follow, noodp'];
+        },
+        'htmlhead/meta-author' => function ($kirby, $site, $page) {
+            return ['content' => $site->author()];
+        },
+        'htmlhead/meta-description' => function ($kirby, $site, $page) {
+            return ['content' => Str::unhtml($page->seodesc())];
+        },
+        'htmlhead/link-feedrss' => function ($kirby, $site, $page) {
+            // defaults
+            return [
+                'url' => url('/feed'),
+                'title' => $page->title(),
+            ];
         },
         'htmlhead/link-feedrss' => function ($kirby, $site, $page) {
             // defaults

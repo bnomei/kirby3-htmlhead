@@ -20,6 +20,12 @@ foreach ($files as $dep) {
             'crossorigin' => 'anonymous',
         ], $options);
     }
+    if (isset($async) && $async) {
+        $options['async'] = true;
+    }
+    if (isset($defer) && $defer) {
+        $options['defer'] = true;
+    }
     if (class_exists('\Bnomei\Fingerprint')) {
         echo Bnomei\Fingerprint::js($dep, $options) . PHP_EOL;
     } else {
