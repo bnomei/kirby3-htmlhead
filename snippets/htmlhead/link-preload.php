@@ -21,6 +21,7 @@ foreach ($files as $dep) {
             $options['as'] = 'fetch';
         } elseif (Str::contains($dep, '.woff')) {
             $options['as'] = 'font';
+            $options['crossorigin'] = 'anonymous';
         } elseif (Str::contains($dep, '.svg') || Str::contains($dep, '.png') || Str::contains($dep, '.jpg') || Str::contains($dep, '.gif')  || Str::contains($dep, '.avif')  || Str::contains($dep, '.webp')) {
             $options['as'] = 'image';
         }
