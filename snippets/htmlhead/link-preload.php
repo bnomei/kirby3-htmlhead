@@ -8,9 +8,13 @@ foreach ($files as $dep) {
     $options['rel'] = 'preload';
     $options['href'] = $dep;
     if (strpos($dep, '|') !== false) {
-        list($href, $as) = explode('|', $dep);
+        list($href, $as, $origin) = explode('|', $dep);
         $options['href'] = $href;
         $options['as'] = $as;
+        if ($origin) {
+            $options['crossorigin'] = is_string($origin) ? $origin : true;
+        }
+
     } else {
         // https://developer.mozilla.org/en-US/docs/Web/HTML/Link_types/preload
         if (Str::contains($dep, '.js')) {
@@ -19,10 +23,10 @@ foreach ($files as $dep) {
             $options['as'] = 'style';
         } elseif (Str::contains($dep, '.json')) {
             $options['as'] = 'fetch';
-            // $options['crossorigin'] = true;
+            $options['crossorigin'] = true;
         } elseif (Str::contains($dep, '.woff')) {
             $options['as'] = 'font';
-            // $options['crossorigin'] = true;
+            $options['crossorigin'] = true;
         } elseif (Str::contains($dep, '.svg') || Str::contains($dep, '.png') || Str::contains($dep, '.jpg') || Str::contains($dep, '.gif')  || Str::contains($dep, '.avif')  || Str::contains($dep, '.webp')) {
             $options['as'] = 'image';
         }
