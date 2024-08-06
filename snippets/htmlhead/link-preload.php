@@ -34,6 +34,6 @@ foreach ($files as $dep) {
     if (class_exists('\Bnomei\Fingerprint') && in_array($options['as'], ['script', 'style'])) {
         $options['href'] = Bnomei\Fingerprint::url($options['href']);
     }
-    $options['crossorigin'] = true;
+
     echo Html::tag('link', null, $options) . PHP_EOL;
 }
