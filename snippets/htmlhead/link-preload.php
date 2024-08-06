@@ -19,9 +19,10 @@ foreach ($files as $dep) {
             $options['as'] = 'style';
         } elseif (Str::contains($dep, '.json')) {
             $options['as'] = 'fetch';
+            // $options['crossorigin'] = true;
         } elseif (Str::contains($dep, '.woff')) {
             $options['as'] = 'font';
-            $options['crossorigin'] = 'anonymous';
+            // $options['crossorigin'] = true;
         } elseif (Str::contains($dep, '.svg') || Str::contains($dep, '.png') || Str::contains($dep, '.jpg') || Str::contains($dep, '.gif')  || Str::contains($dep, '.avif')  || Str::contains($dep, '.webp')) {
             $options['as'] = 'image';
         }
@@ -29,5 +30,6 @@ foreach ($files as $dep) {
     if (class_exists('\Bnomei\Fingerprint') && in_array($options['as'], ['script', 'style'])) {
         $options['href'] = Bnomei\Fingerprint::url($options['href']);
     }
+    $options['crossorigin'] = true;
     echo Html::tag('link', null, $options) . PHP_EOL;
 }
