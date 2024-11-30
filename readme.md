@@ -27,7 +27,7 @@ Use the `htmlhead()` helper to add meta tags, link tags, script tags, etc. to th
 
 ```php
 <!DOCTYPE html>
-<html <?= htmlhead()->langAttr() ?>>
+<html>
     <head>
         <?= htmlhead()
             ->recommended_minimum()
