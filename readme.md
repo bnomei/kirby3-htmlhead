@@ -32,15 +32,19 @@ Use the `htmlhead()` helper to add meta tags, link tags, script tags, etc. to th
         <?= htmlhead()
             ->recommended_minimum()
             ->title()
+            ->base()
             // ->link_preconnect(...)
+            ->script_js(['/assets/app-async.js'], async: true)
             ->script_js(['/assets/app.js'])
             ->link_css(['/assets/app.css'])
+            // ->link_a11ycss()
+            // ->link_csswizardry_ct()
             // ->link_preload(...)
+            // ->script_js(['/assets/app-defer.js'], defer: true)
             // ->link_prefetch(...)
-            ->base()
+            // ->link_prerender(...)
             // ->link_canonical(...)
             // ->link_alternates(...)
-            // ->link_canonical(...)
             ->meta_robots()
             ->meta_author(site()->author())
             ->meta_description($page->seoDesc())
@@ -60,6 +64,8 @@ Use the `htmlhead()` helper to add meta tags, link tags, script tags, etc. to th
 
 - https://htmlhead.dev
 - https://csswizardry.com/ct/
+- https://x.com/csswizardry/status/1440710328266858500
+- https://speakerdeck.com/csswizardry/get-your-head-straight?slide=39
 
 ## Disclaimer
 
