@@ -30,6 +30,7 @@ class ComposerStaticInit19166d4450aa66f8b46328983ec536a6
 
     public static $classMap = array (
         'Bnomei\\HTMLHead' => __DIR__ . '/../..' . '/classes/HTMLHead.php',
+        'Bnomei\\HTMLHeadSnippets' => __DIR__ . '/../..' . '/classes/HTMLHeadSnippets.php',
         'Composer\\InstalledVersions' => __DIR__ . '/..' . '/composer/InstalledVersions.php',
         'Kirby\\ComposerInstaller\\CmsInstaller' => __DIR__ . '/..' . '/getkirby/composer-installer/src/ComposerInstaller/CmsInstaller.php',
         'Kirby\\ComposerInstaller\\Installer' => __DIR__ . '/..' . '/getkirby/composer-installer/src/ComposerInstaller/Installer.php',

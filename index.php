@@ -1,59 +1,58 @@
 <?php
 
-@include_once __DIR__ . '/vendor/autoload.php';
+use Kirby\Cms\Page;
+
+@include_once __DIR__.'/vendor/autoload.php';
+
+if (! class_exists('Bnomei\HTMLHead')) {
+    require_once __DIR__.'/classes/HTMLHead.php';
+}
+
+if (! function_exists('htmlhead')) {
+    function htmlhead(?Page $page = null): \Bnomei\HTMLHead
+    {
+        return \Bnomei\HTMLHead::singleton($page ?? kirby()->site()->page());
+    }
+}
 
 Kirby::plugin('bnomei/htmlhead', [
     'options' => [
-        'snippets' => [],
+        'snippets' => [], // needs to be set in config or via fluent helper
     ],
     'snippets' => [
-        'htmlhead/base' => __DIR__ . '/snippets/htmlhead/base.php',
-        'htmlhead/fathom' => __DIR__ . '/snippets/htmlhead/fathom.php',
-        'htmlhead/google-analytics' => __DIR__ . '/snippets/htmlhead/google-analytics.php',
-        'htmlhead/google-globalsitetag' => __DIR__ . '/snippets/htmlhead/google-globalsitetag.php',
-        'htmlhead/google-tagmanager' => __DIR__ . '/snippets/htmlhead/google-tagmanager.php',
-        'htmlhead/link-a11ycss' => __DIR__ . '/snippets/htmlhead/link-a11ycss.php',
-        'htmlhead/link-alternates' => __DIR__ . '/snippets/htmlhead/link-alternates.php',
-        'htmlhead/link-canonical' => __DIR__ . '/snippets/htmlhead/link-canonical.php',
-        'htmlhead/link-css' => __DIR__ . '/snippets/htmlhead/link-css.php',
-        'htmlhead/link-csswizardry-ct' => __DIR__ . '/snippets/htmlhead/link-csswizardry-ct.php',
-        'htmlhead/link-feedjson' => __DIR__ . '/snippets/htmlhead/link-feedjson.php',
-        'htmlhead/link-feedrss' => __DIR__ . '/snippets/htmlhead/link-feedrss.php',
-        'htmlhead/link-preconnect' => __DIR__ . '/snippets/htmlhead/link-preconnect.php',
-        'htmlhead/link-prefetch' => __DIR__ . '/snippets/htmlhead/link-prefetch.php',
-        'htmlhead/link-preload' => __DIR__ . '/snippets/htmlhead/link-preload.php',
-        'htmlhead/matomo' => __DIR__ . '/snippets/htmlhead/matomo.php',
-        'htmlhead/meta' => __DIR__ . '/snippets/htmlhead/meta.php',
-        'htmlhead/meta-author' => __DIR__ . '/snippets/htmlhead/meta-author.php',
-        'htmlhead/meta-opengraph' => __DIR__ . '/snippets/htmlhead/meta-opengraph.php',
-        'htmlhead/meta-twittercards' => __DIR__ . '/snippets/htmlhead/meta-twittercards.php',
-        'htmlhead/meta-description' => __DIR__ . '/snippets/htmlhead/meta-description.php',
-        'htmlhead/meta-robots' => __DIR__ . '/snippets/htmlhead/meta-robots.php',
-        'htmlhead/recommended-minimum' => __DIR__ . '/snippets/htmlhead/recommended-minimum.php',
-        'htmlhead/script-js' => __DIR__ . '/snippets/htmlhead/script-js.php',
-        'htmlhead/script-js-async' => __DIR__ . '/snippets/htmlhead/script-js-async.php',
-        'htmlhead/script-js-defer' => __DIR__ . '/snippets/htmlhead/script-js-defer.php',
-        'htmlhead/script-instantpage' => __DIR__ . '/snippets/htmlhead/script-instantpage.php',
-        'htmlhead/title' => __DIR__ . '/snippets/htmlhead/title.php',
-        'htmlhead/umami' => __DIR__ . '/snippets/htmlhead/umami.php',
+        'base' => __DIR__.'/snippets/base.php',
+        'fathom' => __DIR__.'/snippets/fathom.php',
+        'google-analytics' => __DIR__.'/snippets/google-analytics.php',
+        'google-globalsitetag' => __DIR__.'/snippets/google-globalsitetag.php',
+        'google-tagmanager' => __DIR__.'/snippets/google-tagmanager.php',
+        'link-a11ycss' => __DIR__.'/snippets/link-a11ycss.php',
+        'link-alternates' => __DIR__.'/snippets/link-alternates.php',
+        'link-canonical' => __DIR__.'/snippets/link-canonical.php',
+        'link-css' => __DIR__.'/snippets/link-css.php',
+        'link-csswizardry-ct' => __DIR__.'/snippets/link-csswizardry-ct.php',
+        'link-feedjson' => __DIR__.'/snippets/link-feedjson.php',
+        'link-feedrss' => __DIR__.'/snippets/link-feedrss.php',
+        'link-preconnect' => __DIR__.'/snippets/link-preconnect.php',
+        'link-prefetch' => __DIR__.'/snippets/link-prefetch.php',
+        'link-preload' => __DIR__.'/snippets/link-preload.php',
+        'matomo' => __DIR__.'/snippets/matomo.php',
+        'meta' => __DIR__.'/snippets/meta.php',
+        'meta-author' => __DIR__.'/snippets/meta-author.php',
+        'meta-opengraph' => __DIR__.'/snippets/meta-opengraph.php',
+        'meta-twittercards' => __DIR__.'/snippets/meta-twittercards.php',
+        'meta-description' => __DIR__.'/snippets/meta-description.php',
+        'meta-robots' => __DIR__.'/snippets/meta-robots.php',
+        'recommended-minimum' => __DIR__.'/snippets/recommended-minimum.php',
+        'script-js' => __DIR__.'/snippets/script-js.php',
+        'script-js-async' => __DIR__.'/snippets/script-js-async.php',
+        'script-js-defer' => __DIR__.'/snippets/script-js-defer.php',
+        'script-instantpage' => __DIR__.'/snippets/script-instantpage.php',
+        'title' => __DIR__.'/snippets/title.php',
+        'umami' => __DIR__.'/snippets/umami.php',
     ],
     'pageMethods' => [
-        'htmlhead' => function ($snippets = []) {
-            return \Bnomei\HTMLHead::snippets($this, $snippets);
+        'htmlhead' => function (): string {
+            return \Bnomei\HTMLHead::singleton($this);
         },
     ],
-    'siteMethods' => [
-        'attrLang' => function () {
-            if (is_null(kirby()->language())) {
-                return '';
-            }
-            return 'lang="' . kirby()->language()->code() . '"';
-        },
-        'langAttr' => function () {
-            if (is_null(kirby()->language())) {
-                return '';
-            }
-            return 'lang="' . kirby()->language()->code() . '"';
-        }
-    ]
 ]);

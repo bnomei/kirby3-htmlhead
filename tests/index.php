@@ -1,4 +1,7 @@
 <?php
 
-require '../vendor/autoload.php';
-echo (new Kirby())->render();
+require_once __DIR__.'/../vendor/autoload.php';
+
+$kirby = new Kirby;
+
+echo $kirby->render();

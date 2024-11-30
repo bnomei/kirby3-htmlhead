@@ -14,14 +14,14 @@ foreach ($files as $dep) {
         continue;
     }
     if (strpos($dep, '|') !== false) {
-        list($dep, $integrity) = explode('|', $dep);
+        [$dep, $integrity] = explode('|', $dep);
         $options = array_merge([
             'integrity' => $integrity,
             'crossorigin' => 'anonymous',
         ], $options);
     }
     if (class_exists('\Bnomei\Fingerprint')) {
-        echo Bnomei\Fingerprint::css($dep, $options) . PHP_EOL;
+        echo \Bnomei\Fingerprint::css($dep, $options).PHP_EOL;
     } else {
         echo css($dep, $options);
     }

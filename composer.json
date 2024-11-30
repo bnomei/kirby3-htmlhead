@@ -1,8 +1,8 @@
 {
   "name": "bnomei/kirby3-htmlhead",
-  "description": "Kirby 3 Plugin for a best-practice HTML Head Element extendable with snippets.",
+  "description": "Kirby Plugin for a best-practice HTML Head Element extendable with snippets.",
   "type": "kirby-plugin",
-  "version": "3.3.4",
+  "version": "5.0.0",
   "license": "MIT",
   "authors": [
     {
@@ -11,9 +11,9 @@
     }
   ],
   "keywords": [
-    "kirby3",
-    "kirby3-cms",
-    "kirby3-plugin",
+    "kirby",
+    "kirby-cms",
+    "kirby-plugin",
     "html5",
     "head",
     "meta",
@@ -21,51 +21,42 @@
     "rss-feed",
     "json-feed",
     "accessibility",
-    "google-analytics",
-    "google-globalsitetag",
-    "google-tag-manager",
-    "fathom",
-    "matomo",
     "json-ld",
     "meta-tags",
     "preload",
     "prefetch",
-    "instantpage",
-    "opengraph",
-    "twitter-cards",
-    "umami",
-    "robotstxt"
+    "fluent-builder"
   ],
+  "config": {
+    "optimize-autoloader": true,
+    "sort-packages": true,
+    "allow-plugins": {
+      "getkirby/composer-installer": true,
+      "pestphp/pest-plugin": true
+    }
+  },
   "autoload": {
     "psr-4": {
       "Bnomei\\": "classes/"
     }
   },
-  "config": {
-    "optimize-autoloader": true,
-    "sort-packages": true,
-    "allow-plugins": {
-      "getkirby/composer-installer": true
-    }
-  },
   "require": {
-    "php": ">=8.0.0",
-    "getkirby/composer-installer": "^1.1"
+    "php": ">=8.2",
+    "getkirby/composer-installer": "^1.2"
   },
   "require-dev": {
-    "phpunit/phpunit": "^8.3",
-    "getkirby/cms": "^3.6",
-    "php-coveralls/php-coveralls": "^2.1"
+    "getkirby/cms": "^5.0.0-alpha.4",
+    "larastan/larastan": "^v3.0.0",
+    "laravel/pint": "^1.13",
+    "pestphp/pest": "^v3.5.1",
+    "spatie/ray": "^1.39"
   },
   "scripts": {
-    "analyze": "phpstan analyse classes",
-    "insights": "./vendor/bin/phpinsights -v",
-    "fix": "php-cs-fixer fix",
-    "test": [
-      "mkdir -p tests/logs",
-      "phpunit --configuration ./phpunit.xml"
-    ],
+    "stan": "./vendor/bin/phpstan",
+    "fix": "./vendor/bin/pint",
+    "test": "./vendor/bin/pest --profile",
     "dist": [
+      "composer fix",
       "composer install --no-dev --optimize-autoloader",
       "git rm -rf --cached .; git add .;"
     ],
@@ -73,22 +64,12 @@
       "composer install",
       "composer update",
       "composer install --working-dir=tests/kirby --no-dev --optimize-autoloader",
-      "composer update --working-dir=tests/kirby"
+      "composer update --working-dir=tests/kirby",
+      "sed -i.bak 's/function dump(/function xdump(/g' tests/kirby/config/helpers.php",
+      "sed -i.bak 's/function e(/function xe(/g' tests/kirby/config/helpers.php"
     ]
   },
   "extra": {
     "kirby-cms-path": "tests/kirby"
-  },
-  "suggest": {
-    "bnomei/kirby3-feed": "Add xml-rss and/or json feed",
-    "bnomei/kirby3-fingerprint": "Cachebusting for css/js or any other file using query-string or redirect",
-    "bnomei/kirby3-mobile-detect": "Helper to detect device",
-    "bnomei/kirby3-redirects": "Add http status redirects for any URI (not just Kirby Routes). Perfect when porting a non kirby site",
-    "bnomei/kirby3-robots-txt": "Automatic robots.txt. Detects omz13/kirby3-xmlsitemap",
-    "bnomei/kirby3-security-headers": "CPS headers to make the the web a saver place. Sensible defaults with zero configuration",
-    "fabianmichael/kirby-meta": "Add OpenGraph, Twitter Cards and JSON-ld among other metatags",
-    "omz13/kirby3-wellknown": "Add wellknowns like robots.txt, humans.txt, security.txt, dnt-policy and others",
-    "PaulMorel/kirby3-fathom-analytics": "A Kirby 3 plugin for integrating the privacy focused Fathom Analytics service to your site",
-    "sylvainjule/kirby-matomo": "Generate a tracking code for Matomo, and displays some useful metrics directly within the panel"
   }
 }

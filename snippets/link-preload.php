@@ -2,13 +2,13 @@
 
 $files = $files ?? [];
 foreach ($files as $dep) {
-    if (!$dep || strlen(trim($dep)) === 0) {
+    if (! $dep || strlen(trim($dep)) === 0) {
         continue;
     }
     $options['rel'] = 'preload';
     $options['href'] = $dep;
     if (strpos($dep, '|') !== false) {
-        list($href, $as, $origin) = explode('|', $dep);
+        [$href, $as, $origin] = explode('|', $dep);
         $options['href'] = $href;
         $options['as'] = $as;
         if ($origin) {
@@ -27,13 +27,13 @@ foreach ($files as $dep) {
         } elseif (Str::contains($dep, '.woff')) {
             $options['as'] = 'font';
             $options['crossorigin'] = true;
-        } elseif (Str::contains($dep, '.svg') || Str::contains($dep, '.png') || Str::contains($dep, '.jpg') || Str::contains($dep, '.gif')  || Str::contains($dep, '.avif')  || Str::contains($dep, '.webp')) {
+        } elseif (Str::contains($dep, '.svg') || Str::contains($dep, '.png') || Str::contains($dep, '.jpg') || Str::contains($dep, '.gif') || Str::contains($dep, '.avif') || Str::contains($dep, '.webp')) {
             $options['as'] = 'image';
         }
     }
     if (class_exists('\Bnomei\Fingerprint') && in_array($options['as'], ['script', 'style'])) {
-        $options['href'] = Bnomei\Fingerprint::url($options['href']);
+        $options['href'] = \Bnomei\Fingerprint::url($options['href']);
     }
 
-    echo Html::tag('link', null, $options) . PHP_EOL;
+    echo \Kirby\Cms\Html::tag('link', null, $options).PHP_EOL;
 }

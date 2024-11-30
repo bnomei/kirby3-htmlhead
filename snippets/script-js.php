@@ -14,7 +14,7 @@ foreach ($files as $dep) {
         continue;
     }
     if (strpos($dep, '|') !== false) {
-        list($dep, $integrity) = explode('|', $dep);
+        [$dep, $integrity] = explode('|', $dep);
         $options = array_merge([
             'integrity' => $integrity,
             'crossorigin' => 'anonymous',
@@ -27,7 +27,7 @@ foreach ($files as $dep) {
         $options['defer'] = true;
     }
     if (class_exists('\Bnomei\Fingerprint')) {
-        echo Bnomei\Fingerprint::js($dep, $options) . PHP_EOL;
+        echo \Bnomei\Fingerprint::js($dep, $options).PHP_EOL;
     } else {
         echo js($dep, $options);
     }

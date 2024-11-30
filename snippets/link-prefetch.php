@@ -2,13 +2,13 @@
 
 $files = $files ?? [];
 foreach ($files as $dep) {
-    if (!$dep || strlen(trim($dep)) === 0) {
+    if (! $dep || strlen(trim($dep)) === 0) {
         continue;
     }
     $options['rel'] = 'prefetch';
     $options['href'] = $dep;
     if (strpos($dep, '|') !== false) {
-        list($href, $as) = explode('|', $dep);
+        [$href, $as] = explode('|', $dep);
         $options['href'] = $href;
         $options['as'] = $as;
     } else {
@@ -22,7 +22,7 @@ foreach ($files as $dep) {
         }
     }
     if (class_exists('\Bnomei\Fingerprint')) {
-        $options['href'] = Bnomei\Fingerprint::url($options['href']);
+        $options['href'] = \Bnomei\Fingerprint::url($options['href']);
     }
-    echo Html::tag('link', null, $options) . PHP_EOL;
+    echo \Kirby\Cms\Html::tag('link', null, $options).PHP_EOL;
 }

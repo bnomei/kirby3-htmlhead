@@ -2,7 +2,6 @@
 <html <?= $page->langAttr() ?>>
     <head>
         <?= $page->htmlhead() ?>
-        <?= $page->metatags() ?>
     </head>
     <body>
         <h1><?= $page->title() ?></h1>

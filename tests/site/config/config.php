@@ -1,7 +1,9 @@
 <?php
 
 return [
-    'bnomei.htmlhead.snippets' => [
+    'debug' => true,
+
+    'bnomei.htmlhead.snippetsXXX' => [
         /********************************
          * IMPORTANT: order matters! based on research from @csswizardry
          */
