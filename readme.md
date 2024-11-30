@@ -26,6 +26,7 @@ Use the `htmlhead()` helper to add meta tags, link tags, script tags, etc. to th
 > The order of the tags in the code example is based on best practices. You might want to stick to it as closely as possible and append your own at the end.
 
 ```php
+<?php ?>
 <!DOCTYPE html>
 <html>
     <head>
