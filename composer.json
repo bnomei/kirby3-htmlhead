@@ -2,7 +2,7 @@
   "name": "bnomei/kirby3-htmlhead",
   "description": "Kirby Plugin for a best-practice HTML Head Element extendable with snippets.",
   "type": "kirby-plugin",
-  "version": "5.0.1",
+  "version": "5.0.2",
   "license": "MIT",
   "authors": [
     {
