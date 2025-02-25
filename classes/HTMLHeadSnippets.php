@@ -69,6 +69,16 @@ trait HTMLHeadSnippets
         return $this->snip(__FUNCTION__, get_defined_vars());
     }
 
+    public function script_js_async(array $files = []): self
+    {
+        return $this->snip(__FUNCTION__, get_defined_vars());
+    }
+
+    public function script_js_defer(array $files = []): self
+    {
+        return $this->snip(__FUNCTION__, get_defined_vars());
+    }
+
     public function title(?string $title = null): self
     {
         return $this->snip(__FUNCTION__, get_defined_vars());
