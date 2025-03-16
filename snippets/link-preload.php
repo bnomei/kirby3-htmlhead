@@ -35,5 +35,7 @@ foreach ($files as $dep) {
         $options['href'] = \Bnomei\Fingerprint::url($options['href']);
     }
 
+    $options['fetchpriority'] = 'high'; // https://stackoverflow.com/a/77043840
+
     echo \Kirby\Cms\Html::tag('link', null, $options).PHP_EOL;
 }
