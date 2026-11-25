@@ -6,6 +6,7 @@
 node_modules
 
 /tests/kirby
+/tests/clover.xml
 /tests/logs
 /tests/media
 /tests/site/accounts
