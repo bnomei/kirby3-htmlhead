@@ -1,6 +1,8 @@
 <?php
 
-echo \Kirby\Cms\Html::tag('link', '', [
+use Kirby\Cms\Html;
+
+echo Html::tag('link', '', [
     'rel' => 'alternate',
     'type' => 'application/rss+xml',
     'href' => url($url ?? '/feed'),

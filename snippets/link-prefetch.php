@@ -1,5 +1,8 @@
 <?php
 
+use Bnomei\Fingerprint;
+use Kirby\Cms\Html;
+
 $files = $files ?? [];
 foreach ($files as $dep) {
     if (! $dep || strlen(trim($dep)) === 0) {
@@ -22,7 +25,7 @@ foreach ($files as $dep) {
         }
     }
     if (class_exists('\Bnomei\Fingerprint')) {
-        $options['href'] = \Bnomei\Fingerprint::url($options['href']);
+        $options['href'] = Fingerprint::url($options['href']);
     }
-    echo \Kirby\Cms\Html::tag('link', null, $options).PHP_EOL;
+    echo Html::tag('link', null, $options).PHP_EOL;
 }

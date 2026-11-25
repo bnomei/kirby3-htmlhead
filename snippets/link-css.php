@@ -1,5 +1,7 @@
 <?php
 
+use Bnomei\Fingerprint;
+
 $files = $files ?? [];
 foreach ($files as $dep) {
     $options = [];
@@ -21,7 +23,7 @@ foreach ($files as $dep) {
         ], $options);
     }
     if (class_exists('\Bnomei\Fingerprint')) {
-        echo \Bnomei\Fingerprint::css($dep, $options).PHP_EOL;
+        echo Fingerprint::css($dep, $options).PHP_EOL;
     } else {
         echo css($dep, $options);
     }

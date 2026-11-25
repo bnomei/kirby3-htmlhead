@@ -1,5 +1,7 @@
 <?php
 
+use Kirby\Cms\Html;
+
 $urls = $urls ?? [];
 foreach ($urls as $url) {
     if (! $url || strlen(trim($url)) === 0) {
@@ -8,5 +10,5 @@ foreach ($urls as $url) {
     $options['rel'] = 'preconnect';
     $options['href'] = $url;
 
-    echo \Kirby\Cms\Html::tag('link', null, $options).PHP_EOL;
+    echo Html::tag('link', null, $options).PHP_EOL;
 }
