@@ -1,1 +1,1 @@
-<meta name="description" content="<?= $content ?? '' ?>">
+<meta name="description" content="<?= esc((string) ($content ?? '')) ?>">

@@ -1,17 +1,15 @@
 <?php
 
+use Bnomei\HTMLHead;
 use Kirby\Cms\Page;
 
-@include_once __DIR__.'/vendor/autoload.php';
-
-if (! class_exists('Bnomei\HTMLHead')) {
-    require_once __DIR__.'/classes/HTMLHead.php';
-}
+require_once __DIR__.'/classes/HTMLHeadSnippets.php';
+require_once __DIR__.'/classes/HTMLHead.php';
 
 if (! function_exists('htmlhead')) {
-    function htmlhead(?Page $page = null): \Bnomei\HTMLHead
+    function htmlhead(?Page $page = null): HTMLHead
     {
-        return \Bnomei\HTMLHead::singleton($page ?? kirby()->site()->page());
+        return HTMLHead::singleton($page ?? kirby()->site()->page());
     }
 }
 
@@ -52,7 +50,7 @@ Kirby::plugin('bnomei/htmlhead', [
     ],
     'pageMethods' => [
         'htmlhead' => function (): string {
-            return \Bnomei\HTMLHead::singleton($this);
+            return HTMLHead::singleton($this);
         },
     ],
 ]);

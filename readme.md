@@ -1,7 +1,7 @@
 # Kirby HTMLHead
 
-[![Kirby 5](https://flat.badgen.net/badge/Kirby/5?color=ECC748)](https://getkirby.com)
-![PHP 8.2](https://flat.badgen.net/badge/PHP/8.2?color=4E5B93&icon=php&label)
+[![Kirby 6](https://flat.badgen.net/badge/Kirby/6?color=ECC748)](https://getkirby.com)
+![PHP 8.3+](https://flat.badgen.net/badge/PHP/8.3%2B?color=4E5B93&icon=php&label)
 ![Release](https://flat.badgen.net/packagist/v/bnomei/kirby3-htmlhead?color=ae81ff&icon=github&label)
 ![Downloads](https://flat.badgen.net/packagist/dt/bnomei/kirby3-htmlhead?color=272822&icon=github&label)
 [![Discord](https://flat.badgen.net/badge/discord/bnomei?color=7289da&icon=discord&label)](https://discordapp.com/users/bnomei)
@@ -10,6 +10,8 @@
 Kirby Plugin for a best-practice HTML Head Element extendable with snippets.
 
 ## Installation
+
+Requires Kirby 6 and PHP 8.3 or newer.
 
 - unzip [master.zip](https://github.com/bnomei/kirby3-htmlhead/archive/master.zip) as folder
   `site/plugins/kirby3-htmlhead` or
@@ -57,6 +59,15 @@ Use the `htmlhead()` helper to add meta tags, link tags, script tags, etc. to th
     </body>
 </html>
 ```
+
+## Development
+
+Run `composer install` to install the locked Kirby test site, then `composer test` and `composer stan`.
+Run `composer panel` to serve the fixture on port 8000. Open `/panel`, create a disposable local
+account on first launch, and go to **Site → Home → Preview**. Edit **SEO Description** to include
+quotes and an ampersand. Inspect `meta[name="description"]` and `meta[property="og:description"]`
+in the preview iframe: both should contain the full new value before you save. After saving, reload
+the public home page and check both tags again. Restore `tests/content/home/home.txt` after testing.
 
 ## Resources
 

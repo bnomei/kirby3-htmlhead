@@ -1,1 +1,1 @@
-<title><?= $title ?? $page->title() ?></title>
+<title><?= esc((string) ($title ?? $page->title())) ?></title>
